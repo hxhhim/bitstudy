@@ -1,0 +1,22 @@
+package step01.exam02;
+
+public class Patient {
+	String name;
+	private int age;
+	private float weight;
+	private float height;
+	boolean gender;
+	
+	void setAge(int age) {
+		if(age > 0 && age <120)
+			this.age = age;
+	}
+	void setWeight(float weight) {
+		if(weight > 0 && weight<100)
+			this.weight = weight;
+	}
+	void setHeight(float height) {
+		if(height>0 && height < 300)
+			this.height = height;
+	}
+}

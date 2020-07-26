@@ -1,0 +1,10 @@
+package Queue;
+
+public class QMain {
+
+	public static void main(String[] args) {
+		
+		Queue q = new Queue(10);
+	}
+
+}

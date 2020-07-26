@@ -1,0 +1,41 @@
+package Ex02;
+
+import java.awt.Frame;
+import java.awt.MenuBar;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+
+public class MainApp extends Frame implements ActionListener{
+	public MainApp() {
+		super("비트캠프");
+		prepareMenu();
+		
+		//1)윈도우의 닫기 버튼 이벤트를 처리할 리스너등록
+		addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowClosing(WindowEvent e) {
+				System.exit(0);
+			}
+		});
+		//2)윈도우 크기 지정
+		setSize(500,400);
+	}
+	private void prepareMenu() {
+		MenuBar menuBar = new MenuBar();
+		setMenuBar(menuBar);//메뉴바를 프레임에 추가한다.
+	}
+	
+	public static void main(String[] args) {
+		MainApp app = new MainApp();
+		app.setVisible(true);
+
+	}
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+}

@@ -1,0 +1,9 @@
+package bookex10;
+
+public class WrongPasswordException extends Exception{
+	public WrongPasswordException() {}
+	public WrongPasswordException(String message) {
+		this();
+		System.out.println("패스워드가 틀립니다.");
+	}
+}

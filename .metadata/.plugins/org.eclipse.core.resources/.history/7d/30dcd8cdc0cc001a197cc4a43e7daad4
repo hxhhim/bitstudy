@@ -1,0 +1,5 @@
+package bookex10;
+
+public class WrongPasswordException {
+
+}

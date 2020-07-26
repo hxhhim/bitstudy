@@ -1,0 +1,116 @@
+package Ex06;
+
+import java.awt.BorderLayout;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.awt.Label;
+import java.awt.Panel;
+import java.awt.TextArea;
+import java.awt.TextField;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
+
+public class ProjectPanel extends Panel{
+	TextField ptitleTF;
+	TextField pnumTF;
+	TextField pdateTF;
+	TextField pgoalTF;
+	TextField pmemberTF;
+	TextField pOfficerTF;
+	TextArea plistTA;
+	java.awt.List projectLST;
+	
+	
+	public ProjectPanel() {
+		
+		setLayout(new FlowLayout(FlowLayout.LEFT));
+		
+		Label label = new Label("프로젝트 화면");
+		label.setPreferredSize(new Dimension(400,30));
+		add(label);
+		
+		label = new Label("프로젝트목록");
+		label.setPreferredSize(new Dimension(400,30));
+		add(label);
+		
+		Panel rowPanel = new Panel(new BorderLayout());
+		rowPanel.setPreferredSize(new Dimension(400,200));
+		projectLST = new java.awt.List();
+		projectLST.addItemListener(new ItemListener() {
+
+			@Override
+			public void itemStateChanged(ItemEvent e) {
+				if(e.getStateChange()==ItemEvent.DESELECTED)
+					return;
+				loadForm((int)e.getItem());
+			}
+		});
+		rowPanel.add(projectLST,BorderLayout.CENTER);
+		add(rowPanel);
+		
+		label = new Label("프로젝트 입력/상세정보");
+		label.setPreferredSize(new Dimension (400,30));
+		add(label);
+		
+		rowPanel = new Panel(new FlowLayout(FlowLayout.LEFT));
+		label = new Label("프로젝트명");
+		label.setPreferredSize(new Dimension(80,30));
+		rowPanel.add(label);
+		
+		ptitleTF = new TextField();
+		ptitleTF.setPreferredSize(new Dimension (300,30));
+		rowPanel.add(ptitleTF);
+		add(rowPanel);
+		
+		rowPanel = new Panel(new FlowLayout(FlowLayout.LEFT));
+		label = new Label("프로젝트 책임자");
+		label.setPreferredSize(new Dimension (90,30));
+		rowPanel.add(label);
+		
+		pOfficerTF = new TextField();
+		pOfficerTF.setPreferredSize(new Dimension(80,30));
+		rowPanel.add(pOfficerTF);
+		add(rowPanel);
+		
+		label = new Label("프로젝트 기간");
+		label.setPreferredSize(new Dimension (90,30));
+		rowPanel.add(label);
+		
+		pdateTF = new TextField();
+		pdateTF.setPreferredSize(new Dimension(80,30));
+		rowPanel.add(pdateTF);
+		add(rowPanel);
+		
+		rowPanel = new Panel(new FlowLayout(FlowLayout.LEFT));
+		label = new Label("참여인원");
+		label.setPreferredSize(new Dimension (50,30));
+		rowPanel.add(label);
+		
+		pnumTF = new TextField();
+		pnumTF.setPreferredSize(new Dimension(80,30));
+		rowPanel.add(pnumTF);
+		add(rowPanel);
+		
+		label = new Label("구성원");
+		label.setPreferredSize(new Dimension (50,30));
+		rowPanel.add(label);
+		
+		pmemberTF = new TextField();
+		pmemberTF.setPreferredSize(new Dimension(250,30));
+		rowPanel.add(pmemberTF);
+		add(rowPanel);
+		
+		
+		label = new Label("암호");
+		label.setPreferredSize(new Dimension (40,30));
+		rowPanel.add(label);
+
+
+		
+		
+		
+	}
+	private void loadForm(int no) {
+		
+	}
+}

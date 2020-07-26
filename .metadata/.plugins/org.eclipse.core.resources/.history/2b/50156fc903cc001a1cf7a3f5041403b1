@@ -1,0 +1,10 @@
+package bookex9;
+
+public class AnonymousExample1 {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

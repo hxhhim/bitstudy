@@ -1,0 +1,10 @@
+package Stack;
+
+public class Stack {
+	int[] arr;
+	int top =0;
+	void push(int i) {
+		
+		arr[top++] = i;
+	}
+}

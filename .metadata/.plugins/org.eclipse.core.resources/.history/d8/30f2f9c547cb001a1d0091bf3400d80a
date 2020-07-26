@@ -1,0 +1,18 @@
+package Ex06;
+/*
+ * 이름
+ * 전화번호
+ * 이메일
+ * 주소
+ * 사진??
+ * 연락처삭제,수정,차단,차단목록
+ */
+import java.awt.Label;
+import java.awt.Panel;
+
+public class ContactPanel extends Panel{
+	public ContactPanel() {
+		Label label = new Label("연락처 화면");
+		add(label);
+	}
+}

@@ -1,0 +1,22 @@
+package Queue;
+
+public class QMain {
+
+	public static void main(String[] args) {
+		int i;
+		Queue q = new Queue();
+		
+		q.put(3);
+		System.out.println(q);
+		q.put(4);
+		System.out.println(q);
+		q.put(5);
+		i = q.get();
+		System.out.println(q);
+		System.out.printf("i: %d\n",i);
+		i = q.get();
+		System.out.println(q);
+		System.out.printf("i: %d\n",i);
+	}
+
+}

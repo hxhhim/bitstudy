@@ -1,0 +1,10 @@
+package bookex10;
+
+public class TryCatchFianllyExample {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

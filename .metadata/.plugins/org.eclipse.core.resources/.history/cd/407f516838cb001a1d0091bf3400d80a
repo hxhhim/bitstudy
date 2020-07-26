@@ -1,0 +1,32 @@
+package Ex06;
+
+import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.awt.Label;
+import java.awt.Panel;
+import java.awt.TextArea;
+import java.awt.TextField;
+
+public class ProjectPanel extends Panel{
+	TextField ptitleTF;
+	TextField pnumTF;
+	TextField pdateTF;
+	TextField pgoalTF;
+	TextField pmemberTF;
+	TextField pOfficerTF;
+	TextArea plistTA;
+	
+	
+	public ProjectPanel() {
+		
+		setLayout(new FlowLayout(FlowLayout.LEFT));
+		
+		Label label = new Label("프로젝트 화면");
+		label.setPreferredSize(new Dimension(400,30));
+		add(label);
+		
+		label = new Label("프로젝트목록");
+		label.setPreferredSize(new Dimension(400,30));
+		add(label);
+	}
+}

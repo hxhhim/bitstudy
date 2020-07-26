@@ -1,0 +1,18 @@
+package Ex01;
+
+import java.awt.Frame;
+
+public class MainApp extends Frame {
+	public MainApp() {
+		super("비트캠프");
+		
+		//윈도우 크기 지정
+		setSize(500,400);
+	}
+	public static void main(String[] args) {
+		MainApp app = new MainApp();
+		app.setVisible(true);
+
+	}
+
+}

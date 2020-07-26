@@ -1,0 +1,11 @@
+package bookex8;
+
+public class Cat implements Soundable{
+
+	@Override
+	public String sound() {
+		System.out.println("¾ß¿Ë");
+		return null;
+	}
+
+}

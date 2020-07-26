@@ -1,0 +1,54 @@
+package Stack;
+
+import java.util.Arrays;
+
+class Stack {
+	int[] arr;
+	int top =0;
+	Stack(){
+		//arr = new int[5];
+		this(5);
+	}
+	@Override
+	public String toString() {
+		return "Stack [arr=" + Arrays.toString(arr) + ", top=" + top + "]";
+	}
+	Stack(int cnt){
+		arr =new int[cnt];
+	}
+	void push(int i) {
+		if(isFull()) {
+			System.out.println("스택이 꽉찼습니다.");
+			return;
+		}
+		arr[top++] = i;
+	}
+	boolean isFull(){
+		return top ==arr.length;
+	}
+	int pop() {
+		if(top==0) {
+			System.out.println("스택이 비었습니다.");
+			return -1;
+		}
+		int ret;
+		ret = arr[--top];
+		arr[top] =0;
+		return ret;
+	}
+}
+
+public class StackMain {
+
+	public static void main(String[] args) {
+		Stack stk = new Stack();
+		int ret;
+		stk.push(1);
+		System.out.println(stk);
+		stk.pop();
+		System.out.println(stk);
+		stk.pop();
+		System.out.println(stk);
+	}
+
+}

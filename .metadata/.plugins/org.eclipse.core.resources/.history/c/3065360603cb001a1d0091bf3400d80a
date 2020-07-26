@@ -1,0 +1,36 @@
+package Ex05;
+
+import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.awt.Label;
+import java.awt.Panel;
+import java.awt.TextArea;
+import java.awt.TextField;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+public class BoardPanel extends Panel implements ActionListener{
+	TextArea listTA;
+	TextField titleTF;
+	TextField passwordTF;
+	TextArea contentTA;
+	public BoardPanel() {
+		
+		setLayout(new FlowLayout(FlowLayout.LEFT));
+					
+		Label label = new Label("게시판화면");
+		label.setPreferredSize(new Dimension(400,30));
+		add(label);
+		
+		label = new Label("게시물목록");
+		label.setPreferredSize(new Dimension(400,30));
+		add(label);
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+}

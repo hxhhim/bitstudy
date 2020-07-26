@@ -1,0 +1,45 @@
+package thread.ex02;
+/*
+ * 2개의 스레드를 만든다.
+ * 1번째 스레드는 1~50까지의 합을 계산
+ * 2번째 스레더는 51~100까지 합을 계산
+ * main 스레드는 계산이 끝나고 2개의 총합을 화면에 출력
+ */
+
+class SThread extends Thread{
+	private int sum;
+	private int startNum;
+	private int endNum;
+	public SThread(int startNum, int endNum) {
+		this.startNum = startNum;
+		this.endNum = endNum;
+		sum = 0;
+	}
+	public void run() {
+		for(int i=startNum;i<=endNum;i++)
+			sum += i;
+	}
+	int getsum() {
+		return sum;
+	}
+}
+
+public class ThreadSum {
+
+	public static void main(String[] args) throws InterruptedException {
+		
+		SThread ts0 = new SThread(1,5000);
+		SThread ts1 = new SThread(5001,10000);
+		int sum;
+		ts0.start();
+		ts1.start();
+		
+		ts0.join();
+		ts1.join();
+		
+		sum = ts0.getsum()+ts1.getsum();
+		System.out.println(sum);
+
+	}
+
+}

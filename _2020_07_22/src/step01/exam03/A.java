@@ -1,0 +1,10 @@
+/* 클래스
+ * public : 외부패키지에서 사용가능
+ * public 안붙인다. : 외부 패키지에서 접근 불가능!
+ * protected,private 접근제어는 사용할수 없다.
+ */
+package step01.exam03;
+
+public class A {
+	
+}

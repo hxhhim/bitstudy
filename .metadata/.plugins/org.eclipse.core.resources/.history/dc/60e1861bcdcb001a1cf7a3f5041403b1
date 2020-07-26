@@ -1,0 +1,25 @@
+package step01.exam05;
+
+import java.util.Scanner;
+
+public class Exam02 {
+
+	public static void main(String[] args) {
+		Scanner keyScan = new Scanner(System.in);
+		int a,b;
+		
+		while(true) {
+			System.out.println("a/b?");
+			try {
+				a = keyScan.nextInt();//에러검사할 부분을 try안에 넣는다.
+				b = keyScan.nextInt();
+				System.out.printf("결과는 %d입니다.\n",a/b);
+			}catch(Exception e) {
+				System.out.println("실행중 오류가 발생했습니다.\n다시 시도해주세요.!");
+				keyScan.nextLine();
+			}
+		}
+
+	}
+
+}

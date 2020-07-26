@@ -1,0 +1,10 @@
+package thread.ex02;
+
+public class InputOutStiring {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}
