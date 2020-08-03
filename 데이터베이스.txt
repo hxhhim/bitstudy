@@ -1,0 +1,444 @@
+데이터가 숫자일 경우
+col username for a10
+username이라는 컬럼의 길이를 10자리로 설정
+
+st계정 생성
+SQL> CREATE USER st IDENTIFIED BY 1234
+	 DEFAULT TABLESPACE users
+         3  TEMPORARY TABLESPACE temp 
+         4  QUOTA UNLIMITED ON users;
+
+권한 부여
+SQL> GRANT connect, resource,create view to st;
+
+테이블 생성
+SQL> CREATE TABLE dept(
+  2  dno VARCHAR2(2),
+  3  dname VARCHAR2(10),
+  4  loc VARCHAR2(6)
+  5  );
+
+
+
+------------------------------------------------------
+SQL> SELELCT [컬럼,컬럼,...| *] FROM 테이블;
+- 테이블로부터 지정한 컬럼을 검색한다.
+- '*' 는 모든 컬럼을 검색할 때 사용한다.
+- '*'을 통해 검색된 결과의 컬럼의 순서는 DESC명령으로 검색한 컬럼순서,
+- '*' 는 컬럼과 같이 사용할 수 없고 반드시 단독으로 사용한다.
+-SELECT절이나 FROM절은 생략할 수 없다.
+-SELECT 문은 프리포맷으로 여러 줄에 걸쳐 기술할 수 있다.
+
+SQL>DESC 테이블;
+-테이블의 구조를 검색한다.
+-컬럼의 이름, 데이터 타입을 확인
+
+SQL>SELECT * FROM tab;
+-현재 스키마(shema)의 모든 테이블 목록을 검색
+-tab는 실제 테이블이 아니라 테이블의 목록을 보여주기 위한 가상테이블이다.
+-오라클에서 스키마는 유저와 동일한 의미를 갖는다.
+
+SQL 문은 반드시 ;으로 끝난다.
+SQL 문은 대소문자를 구별하지 않는다.
+SQL 문은 반드시 결과(출력)가 존재한다.
+
+emp(사원)
+
+eno :     사번
+ename : 이름
+job:      업무
+mgr:     관리자(사수)사번
+hdate:   입사일
+sal:       급여(월)
+comm:  보너스
+dno:     소속부서 번호
+
+
+사번, 이름, 급여를 검색하고 검색된 데이터에 따라 출력
+
+
+SELECT 절을 이용한 수식 검색
+-SELECT절에 컬럼과 무관한 수식을 사용할 수 있따.
+-SELECT 절에 컬럼을 포함하지 않는 경우 FROM절에
+	더미테이블명인 dual을 기입한다.
+
+1. student, course, professor, score , table의 구조를 검색하시오
+SQL> DESC student;
+ Name                                                  Null?    Type
+ ----------------------------------------------------- -------- ------------------------------------
+ SNO                                                            VARCHAR2(8)
+ SNAME                                                          VARCHAR2(10)
+ SEX                                                            VARCHAR2(4)
+ SYEAR                                                          NUMBER(1)
+ MAJOR                                                          VARCHAR2(10)
+ AVR                                                            NUMBER(4,2)
+
+SQL> DESC course;
+ Name                                                  Null?    Type
+ ----------------------------------------------------- -------- ------------------------------------
+ CNO                                                            VARCHAR2(8)
+ CNAME                                                          VARCHAR2(14)
+ ST_NUM                                                         NUMBER
+ PNO                                                            VARCHAR2(8)
+
+SQL> DESC professor;
+ Name                                                  Null?    Type
+ ----------------------------------------------------- -------- ------------------------------------
+ PNO                                                            VARCHAR2(8)
+ PNAME                                                          VARCHAR2(10)
+ SECTION                                                        VARCHAR2(10)
+ ORDERS                                                         VARCHAR2(10)
+ HIREDATE                                                       DATE
+
+SQL> DESC score;
+ Name                                                  Null?    Type
+ ----------------------------------------------------- -------- ------------------------------------
+ SNO                                                            VARCHAR2(8)
+ CNO                                                            VARCHAR2(8)
+ RESULT                                                         NUMBER
+
+2. 모든 학생의 정보를 검색 하시오.
+SELECT * FROM student;
+
+3. 모든 교수의 정보를 검색하시오.
+SELECT * FROM professor;
+
+4.모든 과목의 정보를 검색하시오.
+SELECT * FROM course;
+
+5.기말고사 시험점수를 검색하시오.
+SELECT * FROM score;
+
+6. 학생들의 학과와 학년을 검색하시오.
+SELECT sname,major,syear FROM student;
+
+7. 각 과목의 이름을 검색하시오.
+SELECT cname FROM course;
+
+8. 모든 교수의 직위를 검색하시오.
+SELECT pname,orders FROM professor;
+
+9.각 과목의 학점수와 담당교수 번호를 검색하시오.
+SELECT cname,st_num,pno FROM course;
+
+10.각 학생들이 속한 학과와 학년을 검색하시오.
+SELECT sname,major,syear FROM student;
+
+student (학생)테이블
+sno :    학번
+sname:  이름
+sex:      성별
+syear:    학년
+major:    학과
+avr:       평균평점
+
+professor(교수)테이블
+pro:	교수번호
+pname:   이름
+section:   소속학과
+orders:	 직위
+hiredate:  부임일
+
+course(과목)테이블
+cno:      과목번호
+cname:   과목명
+st_num:   학점수
+pno:       담당교수 번호
+
+score(기말 고사 점수)테이블
+sno: 학번
+cno: 과목번호
+result:점수
+
+scgrade(점수 등급)
+grade : 등급
+hiscore: 상한값
+loscore: 하한값
+
+
+SQL>SELECT 컬럼 as"별명", 컬럼 as"별명",...
+       FROM 테이블;
+
+-별명은 헤더에 출력되는 내용을 바꿔서 검색된 데이터의 해석을 돕는다.
+-출력되는 것만 바뀜  테이블 데이터는 변경 안됨.
+-예약어 'as'는 생략가능하다.
+-다음에 해당하는 별명을 사용하는 경우 반드시""(이중인용부호)를 사용한다.
+  *공백이 포함된 경우 
+  *특수 문자가 포함된 경우 (#,$)
+   -항목에 제일 처음에는 사용못한다.
+   -항목에 제일 처음에는 숫자사용못함.
+  *대소문자를 구별하고자 할 경우
+-다음 두개의 SQL 문은 동일하다. 
+ -SELECT eno AS "사원번호",ename AS"이름" FROM emp;
+ -SELECT eno "사원번호",ename"이름" FROM emp;
+
+
+사번, 이름, 급여, 보너스 사원의 연봉을 검색해보자(연봉 = 12개월분 급여(sal)+보너스(comm))
+
+NULL 연산을 위한 NVL함수의 사용
+ - 컬럼의 NULL을 [치환 값]으로 치환한다.
+ - NULL이 아닌경우 원래 값을 반환한다.
+
+SELECT  eno 사번, ename 이름, sal 급여, comm 보너스,sal*12+NVL(comm,0) 연봉  FROM emp;
+
+
+1)각 학생의 평균 평점을 검색하시오(별명으로)
+SELECT sno 학번, sname 이름, avr 평균평점 FROM student;
+
+2)각 과목의 학점수를 검색하시오(별명으로)
+SELECT cno 과목번호, cname 과목명, st_num 학점수 FROM course;
+
+3)각 교수의 교수 번호, 교수이름, 교수지위를 검색하시오(별명으로)
+SELECT pno 교수번호, pname 교수이름, orders 지위 FROM professor;
+
+4)사번, 이름, 급여를 10%인상했을때 연간 지급되는 급여를 검색하시오.
+SELECT eno 사번, ename 이름, sal*12*1.1 "연간 인상 급여" FROM emp;
+
+5)현재 학생의 평균 평점은 4.0만점이다. 이름 4.5만점으로 환산해서 검색하시오
+SELECT sno 학번, sname 이름, avr/4*4.5 "환산 평점" FROM student;
+
+6)급여가 10% 인상될 경우 각 사원의 연봉을 검색하시오
+SELECT eno 사번, ename 이름, sal*12*1.1+NVL(comm,0) "인상된 연본" FROM emp;
+
+7) 1년동안 지급되는 급여와 10%인상되어 1년동안 지급되는 급여간에 차액을 검색하시오
+SELECT eno 사번, ename 이름, (sal*12*1.1)-(sal*12) "연간 수급액 차" FROM emp;
+
+8) 각 학생들의 평균평점을 4.5만점으로 환산한 경우 각각 평점의 상승폭은 얼마인지 검색하시오.
+SELECT sno 학번, sname 이름, (avr/4*4.5)-avr "환산학점 증가분" FROM student;
+
+
+
+
+--연결연산자와 중복제거
+--사원의 이름을 급여와 업무를 하나로 합쳐서 출력하시오.
+SQL>SELECT ename || sal || job FROM emp;
+
+* /
+||
++-
+우선순위 위로갈수록 높다
+
+
+SQL> SELECT 컬럼|| '리터럴'||......FROM 테이블;
+-연결 연산자(||)는 리터럴이나 컬럼을 하나의 문자열로 검색한다.
+-리터럴이란 SQL문에 쓰인 문자, 숫자, 날짜를 의미한다.
+-연결 연산자는 SELECT 문을 이용 다양한 문장을 만들때 많이 사용된다.
+
+
+SQL>SELECT ename||'의 업무는 '||job||'입니다.' FROM emp;
+
+ENAME||'의업무는'||JOB||'입니다.'
+------------------------------------------------------------------------------------
+안영희의 업무는 경영입니다.
+안영숙의 업무는 지원입니다.
+손하늘의 업무는 지원입니다.
+이승철의 업무는 회계입니다.
+박선경의 업무는 회계입니다.
+제갈민의 업무는 개발입니다.
+정의찬의 업무는 개발입니다.
+이초록의 업무는 개발입니다.
+윤고은의 업무는 개발입니다.
+권아현의 업무는 분석입니다.
+김선유의 업무는 회계입니다.
+김선유의 업무는 분석입니다.
+김민지의 업무는 회계입니다.
+권나현의 업무는 분석입니다.
+김진성의 업무는 회계입니다.
+천유정의 업무는 분석입니다.
+김경현의 업무는 지원입니다.
+
+||연산자 사용시 계산식에 ()로 감싸준다.
+우선순위 때문에 ()사용안하면 문자에 숫자를 더할수 없어서 오류가 발생.
+
+SQL> SELECT ename||' '||(sal+100) FROM emp;
+
+ENAME||''||(SAL+100)
+----------------------------------------------------------------------------------------------------
+안영희 4900
+안영숙 4000
+손하늘 3610
+이승철 3500
+박선경 3400
+제갈민 1620
+정의찬 4450
+이초록 2089
+윤고은 2200
+권아현 3000
+김선유 1000
+김선유 3300
+김민지 1200
+권나현 2700
+김진성 3300
+천유정 3000
+김경현 4100
+
+17 rows selected.
+
+중복제거
+SQL>SELECT [ DISTINCT | ALL ] 컬럼, 컬럼,... FROM 테이블;
+-DISTINCT: 중복된 값은 한번만 출력한다.
+-ALL: 중복된 값을 모두 출력한다.(기본값)
+
+SQL>SELECT DISTINCT job FROM emp;
+
+1) ___학과인___학생은 현재 평점___입니다.형태 학생의 정보를 출력하시오.
+SELECT major||'학과인 '||sname||' 학생은 현재 평점은'||avr||' 입니다' FROM student;
+
+2)____과목은____학점 과목입니다.
+SELECT cname||' 과목은 '||st_num||' 학점 과목입니다.' FROM course;
+
+3)____교수는 ___학과 소속입니다.
+SELECT pname||' 교수는 '||section||' 학과 소속입니다.' FROM professor;
+
+4)학교에는 어떤학과가 있는 지 검색하시오(학생 테이블 기반으로 검색 중복없이)
+SELECT DISTINCT major FROM student;
+
+5)학교에는 어떤 학과가 있는지 검색하시오(교수 테이블 기반으로 검색 중복없이)
+SELECT DISTINCT section FROM professor;
+
+6)___학생의 4.5환산 평점은 ___입니다.
+SELECT sname||' 학생의 4.5환산 평점은 '||avr/4.0*4.5||' 입니다.' FROM student;
+
+7)___과목의 담당교수 번호는 ___입니다.
+SELECT section||' 과목의 담당교수 번호는 '||pno||' 입니다.' FROM professor;
+SELECT section||' 과목의 담당교수 '||pname||' 교수님 번호는 '||pno||' 입니다.' FROM professor;
+
+8)학교에 개설된 과목들은 몇학점짜리 인지 검색하시오.
+SELECT DISTINCT cname, st_num FROM course;
+
+9)학생들이 수강중인 과목의 과목번호를 검색하시오
+SELECT DISTINCT cno FROM score;
+
+
+
+--정렬과 묶음 검색
+SQL> SELECT [ DISTINCT | ALL ] 컬럼, 컬럼,....
+        FROM 테이블
+        ORDER BY 컬럼 [ASC/DESC], 컬럼[ASC/DESC]....
+- ORDER BY : 지정된 컬럼을 대상으로 정렬을 수생한다.
+- ASC는 오름차순 정렬, DESC는 내림차순 정렬을 지정한다.
+  - 지정하지 않으면 ASC가 기본 값
+- 정렬대상인 컬럼이 여러 개인 경우 앞에 지정한 컬럼이 동일 한 
+  값에 대해서 뒤에 지정된 컬럼으로 정렬된다. 즉 앞쪽 컬럼의 정렬이
+  깨지지 않는 범위 내에서 다음 컬럼으로 정렬을 수행한다.
+ 
+사원의 이름을 급여 순으로 검색하시오.
+
+SELECT eno 사번, ename 이름, sal 급여 FROM emp ORDER BY sal DESC;
+
+사원의 사번과 이름을 연봉순으로 검색하시오.
+
+SELECT eno 사번, ename 이름, sal*12+NVL(comm,0) 연봉 FROM emp 
+ORDER BY sal*12+NVL(comm,0) DESC;
+
+SELECT eno 사번, ename 이름, sal*12+NVL(comm,0) 연봉 FROM emp
+ORDER BY 연봉 ASC;
+//가명으로 대체해도 가능;
+
+SELECT eno, ename, sal FROM emp ORDER BY eno;
+SELECT eno, ename, sal FROM emp ORDER BY 1;
+SELECT eno, ename, sal FROM emp ORDER BY 2;
+SELECT eno, ename, sal FROM emp ORDER BY 3;
+컬럼 인덱스를 입력해서 정렬칼럼 정할수 있음.(1부터시작)
+
+SELECT job 업무, eno 사번, ename 이름, sal 급여 FROM emp ORDER BY 업무,급여;
+업무로 정렬후 급여로 정렬;
+
+SQL> SELECT job 업무, eno 사번, ename 이름, sal 급여 FROM emp ORDER BY 업무 ,급여 DESC;
+
+업무(ASC(기본값))로 정렬후 급여로 내림차순(DESC) 정렬;
+
+각부서별로 사원의 급여를 검색한다 단 급여를 많이 받는 사람부터 검색한다.
+
+SQL> SELECT dno 부서번호, eno 사번, ename 이름, sal 급여 FROM emp ORDER BY 부서번호 ,급여 DESC;
+
+1)성적순으로 학생의 이름을 검색하시오.
+SELECT sname 이름, avr 평균평점  FROM student ORDER BY avr DESC;
+
+2)학과별 성적순으로 학생의 정보를 검색하시오.
+SQL> SELECT sname 이름, major 학과 , avr 평균평점  FROM student ORDER BY 학과, avr DESC;
+
+3)학년별 성적순으로 학생의 정보를 검색하시오.
+SELECT sname 이름, syear 학년 , avr 평균평점  FROM student ORDER BY 학년, avr DESC;
+
+4)학과별 학년별의 학생의 정보를 성적순으로 검색하시오.
+SELECT sname 이름, syear 학년, major 학과 , avr 평균평점  FROM student ORDER BY 학과, 학년, avr DESC;
+
+5)학점 순으로 과목 이름을 검색하시오.
+SELECT cname 과목명, st_num 학점  FROM course ORDER BY 학점;
+
+6)각 학과별로 교수의 정보를 검색하시오.
+SELECT pname 교수이름, section 소속학과, orders 직위 FROM professor ORDER BY section;
+
+7)지위별로 교수의 정보를 검색하시오.
+SELECT pname 교수이름, section 소속학과, orders 직위 FROM professor ORDER BY orders;
+
+8)각 학과별로 교수의 정보를 부임일자 순으로 검색하시오.
+SELECT pname 교수이름, section 소속학과, orders 직위, hiredate 부임일 FROM professor ORDER BY 소속학과,부임일;
+
+9)급여가 10% 인상된 경우 부서별로 각 사원의 연봉을 연봉순으로 검색하시오.
+SQL> SELECT ename 이름, dno  소속부서번호 ,sal*12*1.1+NVL(comm,0) 인상된연봉 FROM emp ORDER BY dno , 인상된연봉 DESC;
+
+10)보너스가 100% 인상된 경우 업부별로 각 사원의 연봉을 연봉순으로 검색하시오.
+SQL> SELECT ename 이름, dno  소속부서번호 ,sal*12+NVL(comm*2,0) 인상된연봉 FROM emp ORDER BY dno , 인상된연봉 DESC;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
