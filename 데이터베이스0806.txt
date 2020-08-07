@@ -1,0 +1,514 @@
+--자연 조인을 사용해서 
+--광주에서 근무하는 직원의 명단을 검색하시오.
+--SELECT *FROM emp,dept WHERE dept.dno=emp.dno AND dept.loc='광주';
+--SELECT *FROM emp NATURAL JOIN dept WHERE loc='광주';
+
+--Using 절을 사용한 Join
+--두 테이블에 공통 2개이상인 경우 
+--SELECT 컬럼,....
+--FROM 테이블2
+--JOIN 테이블2 USING(조인 컬럼)
+--[JOIN 테이블3 USIING(조인 컬럼)...
+--WHERE 일반_조건;
+--1)NATURAL 과 USING은 함께 사용할 수 없다.
+--2) 조인에 사용되지 않는 동일 명칭의 컬럼은
+--컬럼명 앞에 테이블 명을 기술한다.
+
+--USING 절로 각 상원의근무 부서를 검색한다.
+SELECT eno,ename,dno,dname FROM emp JOIN dept USING(dno);
+
+--Using 절로 광주에서 근무하는 직원의 명단을 검색하시오.
+SELECT loc,dno, dname, eno, ename
+FROM emp
+NATURAL JOIN dept
+WHERE loc ='광주';
+
+SELECT loc, dno, dname, eno, ename
+FROM emp
+JOIN dept USING(dno)
+WHERE loc='광주';
+
+--화학과 1학년 학생들의 유기화학 점수를 검색하시오.
+
+SELECT *FROM student; --화학과 1학년 학생
+SELECT * FROM course; --과목중 유기화학
+SELECT * FROM score; -- 점수
+
+SELECT major,syear,student.sno,sname,score.cno,cname,result
+  FROM student,score,course
+  WHERE student.sno=score.sno
+  AND score.cno=course.cno
+  AND cname='유기화학'AND major='화학';
+
+SELECT major, syear,sno,sname,cno,cname,result
+    FROM student
+    NATURAL JOIN score
+    NATURAL JOIN course
+    WHERE major='화학'
+    AND syear=1
+    AND cname='유기화학';
+
+SELECT major, syear, sno, sname ,cno, cname, result
+    FROM student
+    JOIN course USING(cno)
+    JOIN score USING(sno)
+    WHERE major='화학'
+    AND syear=1
+    AND cname='유기화학';
+/*
+	단일 행 함수 -- 변환 함수
+	날짜 출력 형식
+	년:YYYY:네자리로 표현된 년도(1999,2020,2011)
+	       YY: 두자리로 표현된 년도(82,20)
+		앞에 두자리는 현재 년도를 사용한다.
+		99년은 2099년을 의미한다.
+	       RR:두자리로 표현된 년도 (99,20)
+		앞에 두자리는 현재 년도와 가까운 년도를 사용한다.
+		99년 1999년, 20년은 2020년
+	       MM:두자리 숫자로 표현된 월(03,04)
+	       MONTH: 영문이나 한글로 표현된 월(MARCH, APRIL, 3월)
+	       MON : 약자로 표현된 영문 및 한글 월(MAR,ARP,3월)
+
+	        DD: 두자리 숫자로 표현된 일자(01,02)
+	        DAY: 영문이나 한글요일(SUNDAY, MON, 일,월)
+	        
+                    HH24: 1시에서 24시까지 표현
+	        HH : 1시에서 12시까지 표현
+	        MI : 두자리 분표시
+	        SS : 두자리 초표시 
+	        SSSS : 하루를 초로 환산한 다음표현(0-86399)
+	        오전/오후/AM/PM: 오전 오후 표기
+	        
+숫자 출력 형식
+  9 	숫자의 출력 폭지정
+  0 	선행 0표기
+  $	화폐 표기
+  L 	지역 화폐
+  , 	쉼표 위치 지정
+  .   	마침표 위치 지정
+  MI 	음수의 - 기호를 오른쪽에 표기
+
+변환 함수
+TO_CHAR : 날짜나 숫자를 문자로 변환한다.
+	   출력 데이터 형식을 지정한다.
+	   TO_CHAR(날짜, 출력 형식)
+	   TO_CHAR(숫자, 출력 형식)
+TO_DATE : 데이터를 날짜형으로 해석한다.
+	   TO_DATE(문자, 해석형식)
+TO_NUMBER : 데이터를 숫자로 해석한다.
+	       대부분의 경우 오라클의 자동 형변환에 의해
+	       숫자로 읽을수 있는 문자로 자동변환됨
+--현재 날짜를 다양한 형식으로 출력해보자
+SELECT TO_CHAR(sysdate,'YYYY/MM/DD')"date",
+          TO_CHAR(sysdate,'YYYY/MM/DD:HH24:MI:SS')"date",
+          TO_CHAR(sysdate,'YY/MM/DD:HH:MI:SS PM')"date"FROM dual;
+
+ --다양한 형식으로 숫자를 출력해 보자
+SQL> SELECT TO_CHAR(12345.678, '999,999.99999')NUM FROM dual;
+
+NUM
+----------------------------
+  12,345.67800
+
+SELECT TO_CHAR(1234,'$999,999')NUM FROM dual;
+
+NUM
+------------------
+   $1,234
+*/
+--10번 부서의 사원의 보너스가 급여의 몇 퍼센트인지 검색하시오.
+--급여 월간급여이고 보너스는 연간 보너스이다.
+--보너스가 null이 경우는 0으로 환원해서 검색한다.
+
+SELECT eno,ename, TO_CHAR(NVL(comm,0)/(sal*12)*100,'99')||'%' FROM emp WHERE dno='10';
+
+ENO      ENAME      TO_CHAR(
+-------- ---------- --------
+3001     김선유       1%
+0269     권나현       6%
+0401     김진성       3%
+
+--그룹 함수
+--검색된 여러 행을 이용하여 통계정보를 계산하는 함수
+--MAX 값들 중에 최대값을 반환
+--MIN 값들 중에 최소값을 반환
+--AVG 평균값을 계산
+--COUNT 반환된 행의 수를 계산
+--SUM 총합을 계산
+--STDDEV 표준편차를 계산
+--VARIANCE 분산을 계산
+
+--1)null 값은 무시된다.
+--2)반드시 1개의 값만을 반환한다.
+--3) GROUP BY 없이 일반 컬럼과 기술 될수 없다.
+
+-----사원의 평균 급여를 검색하시오.
+
+SELECT AVG(sal) 평균급여,ROUND(AVG(sal)) 평균급여 FROM emp;
+
+  평균급여   평균급여
+---------- ----------
+2921.70588       2922
+
+--사원들에게 지급된 보너스 총합과 보너스 평균을 검색하시오.
+
+SELECT SUM(comm) "보너스 총액",SUM(NVL(comm,0))"보너스 총액",
+    ROUND(AVG(comm)) 평균, COUNT(comm) 수령인원,
+    ROUND(AVG(NVL(comm,0)))환산평균,
+    COUNT(*) 전체인원 FROM emp;
+
+보너스 총액 보너스 총액       평균   수령인원   환산평균   전체인원
+----------- ----------- ---------- ---------- ---------- ----------
+      13930       13930        995         14        819         17
+
+평균과 환산평균의 차이는 nul값을 빼느냐 0으로 바꿔서 넣느냐로 인원수가 바뀌기 때문
+
+
+--그룹 함수와 GROUND BY 절
+--SELECT 컬럼 OR 그룹 함수....
+--FROM 테이블
+--WHERE 조건
+--GROUP BY 그룹대상
+--ORDER BY 정렬대상
+
+--1) 그룹함수와 함께 사용되는 컬럼은 
+--    반드시 GROUND BY 절에 기술되어야 한다.
+--2) GROUND BY 절에 기술되지 않으면
+      ORA-00937 에러가 발생한다.
+
+--업무별 평균 급여, 평균 연봉을 검색하시오.
+ SELECT job 업무, ROUND(AVG(sal)) 평균급여,
+    ROUND (AVG(sal*12+NVL(comm,0)))  평균연봉
+    FROM emp
+    GROUP BY job;
+
+--부서별 평균 급여, 평균 연봉을 검색하시오.
+SELECT d.dno 부서번호, dname 부서명,
+   ROUND(AVG(sal))평균급여 ,
+   ROUND(AVG(sal*12+NVL(comm,0))) 평균연봉
+   FROM emp e, dept d
+   WHERE d.dno= e.dno
+   GROUP BY d.dno, dname;
+
+SELECT dno 부서번호, dname 부서명,
+  2  ROUND(AVG(sal))평균급여,
+  3  ROUND(AVG(sal*12+NVL(comm,0)))평균연봉
+  4  FROM emp
+  5  NATURAL JOIN dept
+  6  GROUP BY dno, dname;
+
+부서번호 부서명                 평균급여   평균연봉
+-------- -------------------- ---------- ----------
+01       총무                       4070      49900
+20       ISP                        2807      35180
+10       ERP                        3000      37067
+40       CRM                        2100      25200
+30       ITEA                       3170      39184
+02       회계                       2320      27990
+
+
+1. 화학과 학년별 평균 평점을 검색하라
+SELECT major, syear, ROUND(AVG(avr)) FROM student WHERE major='화학'GROUP BY syear,major;
+
+MAJOR       SYEAR ROUND(AVG(AVR))
+------ ---------- ---------------
+화학            4               2
+화학            1               3
+화학            3               2
+화학            2               2
+SELECT major, syear, (AVG(avr)) FROM student WHERE major='화학'GROUP BY syear,major;
+
+MAJOR       SYEAR (AVG(AVR))
+------ ---------- ----------
+화학            4      1.788
+화학            1 2.92333333
+화학            3      2.205
+화학            2     2.0275
+
+SELECT  syear, (AVG(avr)) FROM student WHERE major='화학'GROUP BY syear;
+
+     SYEAR (AVG(AVR))
+---------- ----------
+         1 2.92333333
+         2     2.0275
+         4      1.788
+         3      2.205
+
+SELECT  syear, TO_CHAR(AVG(avr),'99.99') FROM student WHERE major='화학'GROUP BY syear;
+
+     SYEAR TO_CHAR(AVG(
+---------- ------------
+         1   2.92
+         2   2.03
+         4   1.79
+         3   2.21
+
+2. 각 학생별 기말고사 평균을 검색하라
+SELECT s.sno, sname, TO_CHAR(AVG(result),'99.99') FROM student s ,score WHERE s.sno=score.sno GROUP BY s.sno, sname;
+
+SNO      SNAME      TO_CHAR(AVG(
+-------- ---------- ------------
+945302   김람석      68.62
+945603   정백영      74.52
+905302   정욱상      72.85
+915301   정동상      73.30
+915304   권보수      69.50
+923902   김호야      67.93
+924501   권석복      68.32
+925309   오우재      68.97
+925602   강아영      73.45
+928202   이상지      65.09
+943905   유태지      70.24
+945601   심정용      67.15
+948204   서창동      72.19
+913902   황진혜      66.89
+913903   정도정      72.68
+913908   황진혜      77.23
+914504   심빈경      72.68
+923904   한현석      68.63
+924505   서찬호      68.31
+934502   남궁길      64.67
+935604   권석현      69.34
+943901   최혜원      63.26
+944501   최현각      69.00
+915601   강태용      73.34
+923901   서윤훈      63.33
+925306   김재백      73.15
+933903   정승동      68.32
+938205   문원영      65.97
+943903   유지아      66.21
+944503   곽득용      68.77
+945314   이철윤      70.59
+925601   권운각      74.30
+925604   김가원      67.06
+933902   김현수      66.06
+934501   김아진      72.91
+935304   최홍승      66.94
+918203   장운영      71.65
+938202   신섭인      68.11
+944512   서동조      72.24
+948202   김성지      74.36
+923903   정남윤      61.67
+924502   은정현      66.47
+934503   최모각      73.27
+934504   갑서진      62.13
+894501   장봉철      72.67
+913904   이호란      65.81
+915303   정욱주      67.18
+915305   최정희      69.47
+915602   임주영      66.67
+925301   김환        65.60
+928203   김혁윤      74.48
+905301   유태지      66.88
+918204   신송광      68.28
+944511   김형진      68.93
+948201   이창지      68.69
+948205   신형일      69.81
+905603   정용정      68.56
+913901   황수현      69.64
+914503   김대현      66.94
+915604   정성현      70.24
+915605   강은혜      69.45
+925305   황현정      72.63
+928201   황용진      68.16
+933904   임영현      66.09
+935303   김완창      68.40
+935602   윤희주      75.31
+935605   한지우      64.63
+938201   하혜모      73.86
+943902   하정자      68.23
+945602   차정혜      67.96
+945604   권현        63.93
+945605   오경운      67.92
+948209   유태지      68.82
+914502   문수보      67.03
+918201   이경철      74.32
+924503   박경동      68.97
+925302   이지영      67.55
+925603   최지현      69.35
+928204   장동준      68.52
+933901   김용서      73.13
+935301   이준혜      68.82
+918202   김복길      63.76
+938204   최현        72.59
+
+SELECT sno, sname, TO_CHAR(AVG(result),'99.99') FROM student NATURAL JOIN score GROUP BY sno,sname;
+
+3. 각 학과별 학생 수를 검색하라
+
+SELECT major,COUNT(sno) FROM student GROUP BY major;
+
+MAJOR  COUNT(SNO)
+------ ----------
+식영           17
+생물           17
+유공           17
+화학           16
+물리           16
+
+4. 화학과와 생물학과 학생 4.5 환산 평점의 평균을 각각 검색하라
+SELECT major,ROUND(AVG(avr/4.0*4.5)) FROM student WHERE major='화학' OR major='생물' GROUP BY major;
+
+MAJOR  ROUND(AVG(AVR/4.0*4.5))
+------ -----------------------
+생물                         3
+화학                         2
+
+SELECT major,(AVG(avr/4.0*4.5)) FROM student WHERE major='화학' OR major='생물' GROUP BY major;
+
+MAJOR  (AVG(AVR/4.0*4.5))
+------ ------------------
+생물           2.75823529
+화학             2.435625
+
+SELECT major,TO_CHAR(AVG(avr/4.0*4.5),'99.99') 환산평균FROM student 
+WHERE major='화학' OR major='생물' GROUP BY major;
+
+MAJOR  환산평균
+------ ------------
+생물     2.76
+화학     2.44
+
+SELECT major,TO_CHAR(AVG(avr/4.0*4.5),'99.99') 환산평균 FROM student 
+WHERE major IN('화학','생물') GROUP BY major;
+
+5. 부임일이 10년 이상 된 직급별(정교수, 조교수, 부교수)
+
+  교수의 수를 검색하라
+  WHERE MONTHS_BETWEEN(sysdate, hiredate) >= 120;
+
+SELECT orders, COUNT(orders)FROM professor 
+WHERE MONTHS_BETWEEN(sysdate, hiredate) >= 120 GROUP BY orders;
+
+ORDERS               COUNT(ORDERS)
+-------------------- -------------
+정교수                           8
+부교수                           9
+조교수                           6
+
+
+6. 과목명에 화학이 포함된 과목의 학점수 총합을 검색하라
+
+SELECT SUM(st_num) FROM course WHERE cname LIKE '%화학%' ;
+
+SUM(ST_NUM)
+-----------
+         21
+
+7. 화학과 학생들의 기말고사 성적을 성적순으로 검색하라
+SELECT sname, avr FROM student WHERE major='화학'ORDER BY avr desc;
+
+SNAME             AVR
+---------- ----------
+김환             3.58
+김람석           3.56
+유태지           3.28
+최홍승              3
+오우재           2.99
+황현정           2.98
+김재백           2.78
+권보수           2.32
+이철윤           2.22
+이준혜           1.99
+이지영           1.68
+정욱상           1.44
+정욱주            .95
+정동상            .95
+최정희            .58
+김완창            .34
+
+SELECT sname, TO_CHAR(AVG(result),'99.99') FROM student s, score r 
+WHERE s.sno=r.sno AND major='화학' GROUP BY sname ORDER BY AVG(result)desc;
+
+SNAME      TO_CHAR(AVG(
+---------- ------------
+정동상      73.30
+김재백      73.15
+정욱상      72.85
+황현정      72.63
+이철윤      70.59
+권보수      69.50
+최정희      69.47
+오우재      68.97
+이준혜      68.82
+김람석      68.62
+김완창      68.40
+이지영      67.55
+정욱주      67.18
+최홍승      66.94
+유태지      66.88
+김환        65.60
+
+8. 학과별 기말고사 평균을 성적순으로 검색하라
+SELECT major, (AVG(avr)) FROM student GROUP BY major ORDER BY (AVG(avr))DESC;
+
+MAJOR  (AVG(AVR))
+------ ----------
+식영   3.23176471
+유공   2.95058824
+생물   2.45176471
+물리      2.42375
+화학        2.165
+
+SELECT major, ROUND(AVG(avr)) FROM student GROUP BY major ORDER BY ROUND(AVG(avr))DESC;
+
+MAJOR  ROUND(AVG(AVR))
+------ ---------------
+식영                 3
+유공                 3
+물리                 2
+화학                 2
+생물                 2
+
+SELECT major, TO_CHAR(AVG(result),'99.99') FROM student s,score r WHERE s.sno=r.sno GROUP BY major ORDER BY (AVG(result))DESC;
+
+MAJOR  TO_CHAR(AVG(
+------ ------------
+식영    69.90
+유공    69.70
+화학    69.36
+물리    68.92
+생물    67.93
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
