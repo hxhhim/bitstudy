@@ -4,6 +4,8 @@ import java.util.Scanner;
 
 import action.Action;
 import action.MemberAddAction;
+import action.MemberDelAction;
+import action.MemberUpAction;
 import controller.MemberController;
 import svc.MemberListService;
 
@@ -36,13 +38,19 @@ public class MemberUi {
 				break;
 			case 2:
 				memberListService.listMember();
-				System.out.println("회원목록보기");
 				break;
 			case 3:
-				System.out.println("회원정보수정");
+				action = new MemberUpAction();
+				if(action !=null) {
+					memberController.processorRequest(action, sc);
+				}
+				
 				break;
 			case 4:
-				System.out.println("회원정보삭제");
+				action = new MemberDelAction();
+				if(action !=null) {
+					memberController.processorRequest(action, sc);
+				}				
 				break;
 			case 5:
 				System.out.println("프로그램 종료");

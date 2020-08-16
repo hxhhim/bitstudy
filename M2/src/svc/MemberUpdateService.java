@@ -1,29 +1,26 @@
 package svc;
 
-import static db.jdbcUtil.commit;
 import static db.jdbcUtil.getConnection;
+import static db.jdbcUtil.commit;
 import static db.jdbcUtil.rollback;
-
 import java.sql.Connection;
 
 import dao.MemberDAO;
 import vo.Member;
 
-public class MemberDeleteService {
-
-	public boolean delMember(int delId) {
-		boolean delIdSuccess = false;
+public class MemberUpdateService {
+	public boolean upMember(Member newMember,int updateId) {
+		boolean upIdSuccess = false;
 		Connection con = getConnection();
 		MemberDAO memberDAO = new MemberDAO(con);
 		
-		int delCount = memberDAO.deleteMember(delId);
-		if(delCount>0) {
+		int upCount = memberDAO.updateMember(newMember, updateId);
+		if(upCount>0) {
 			commit(con);
-			delIdSuccess= true;
+			upIdSuccess = true;
 		}else {
 			rollback(con);
 		}
-		return delIdSuccess;
+		return upIdSuccess;
 	}
-	
 }

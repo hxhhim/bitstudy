@@ -7,8 +7,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.Scanner;
 
+import util.ConsoleUtil;
 import vo.Member;
 
 public class MemberDAO {
@@ -45,29 +45,80 @@ public class MemberDAO {
 		
 		return insertCount;
 	}
-	public void deleteMember() throws SQLException {
-		Scanner sc = new Scanner(System.in);
+	public int deleteMember(int delId) {
+		int delCount = 0;
 		PreparedStatement pstmt = null;
-		StringBuffer sb = new StringBuffer();
-		sb.setLength(0);
-		sb.append("DELETE FROM member WHERE id='?'");
-		String del = sc.nextLine();
-		pstmt.executeUpdate(sb.toString());
+		
+		
+		
+		String sql="DELETE FROM member WHERE id=?";
+		try {
+			pstmt= con.prepareStatement(sql);
+			pstmt.setInt(1,delId);
+			delCount=pstmt.executeUpdate();
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if(pstmt !=null)
+					close(pstmt);
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+		}
+		return delCount;
 	}
+	
 	public void listMember(Connection con)  {
 		
 		ResultSet rs = null;
-		Statement stmt = null;
-		StringBuffer sb = new StringBuffer();
-		sb.setLength(0);
-		sb.append("SELECT * FROM member");
+		PreparedStatement pstmt = null;
+		
+		String sql ="SELECT * FROM member";
 		try {
-		rs=stmt.executeQuery(sb.toString());
+		pstmt=con.prepareStatement(sql);
+		rs=pstmt.executeQuery();
 		while(rs.next()) {
-			System.out.println(rs.toString());
+			int id = rs.getInt(1);
+			String name = rs.getString(2);
+			String addr = rs.getString(3);
+			String nation = rs.getString(4);
+			String email = rs.getString(5);
+			int age = rs.getInt(6);
+			Member newMember= new Member(name,addr,nation,email,age);
+			System.out.println("id: "+id+" "+newMember);
 		}
 		}catch(SQLException e){
 			e.printStackTrace();
 		}
+	}
+	public int updateMember(Member newMember,int updateId) {
+		int updateCount = 0;
+		PreparedStatement pstmt = null;
+			
+		
+		String sql="UPDATE member SET id=?,name=?,addr=?,nation=?,email=?,age=? WHERE id=?";
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, updateId);
+			pstmt.setString(2, newMember.getName());
+			pstmt.setString(3, newMember.getAddr());
+			pstmt.setString(4, newMember.getNation());
+			pstmt.setString(5, newMember.getEmail());
+			pstmt.setInt(6, newMember.getAge());
+			pstmt.setInt(7, updateId);
+			updateCount = pstmt.executeUpdate();
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if(pstmt != null)
+					close(pstmt);
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+		}
+				
+		return updateCount;
 	}
 }
