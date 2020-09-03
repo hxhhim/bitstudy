@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div{
+            width: 500px;
+            height: 300px;
+            border-radius: 10px;
+        }
+        .grad1{
+            background: blue;
+            background: -webkit-radial-gradient(white,green,blue);
+            background: -moz-radial-gradient(white,green,blue);
+            background: -o-radial-gradient(white,green,blue);
+            background: radial-gradient(white,green,blue);
+        }
+        .grad2{
+            background: blue;
+            background: -webkit-radial-gradient(circle,white,green,blue);
+            background: -moz-radial-gradient(circle,white,green,blue);
+            background: -o-radial-gradient(circle,white,green,blue);
+            background: radial-gradient(circle,white,green,blue);
+        }
+    </style>
+</head>
+<body>
+    <div class="grad1"></div>
+    <div class="grad2"></div>
+    
+</body>
+</html>

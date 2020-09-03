@@ -1,0 +1,38 @@
+<!-- 
+    width,height는
+    컨텐츠의 너비와 높이이다.
+
+    레이아웃을 설계할때 실제 컨텐츠 크기를 계산하기
+    박스 모델의 전체너비 = width+좌우패딩+좌우테두리
+    박스 모델의 전체 높이 = height + 상하패딩 + 상하테두리
+-->
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>박스모델</title>
+    <style>
+        .box1{
+            width: 400px;   /* 고정 너비 */
+            height: 100px;  /* 높이 */
+            background: #ff6a00;    /* 배경색 */
+        }
+        .box2{
+            width: 50%;     /* 가변 너비 - 브라우저 창 너비의 50% */
+            height: 100px;      /* 높이 */
+            background: #0094ff;    /* 배경색 */
+        }
+        div{
+            margin: 10px;   /* div 간의 여백 */
+            padding: 10px;
+            border: 2px solid brown;
+        }
+    </style>
+</head>
+<body>
+    <div class="box1"></div>
+    <div class="box2"></div>
+</body>
+</html>
