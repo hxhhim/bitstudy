@@ -18,6 +18,8 @@ public class LamdaExpressionsExample {
 			int score = s.getScore();
 			System.out.println(name +"-"+score);
 		});
+		
+		
 
 	}
 
