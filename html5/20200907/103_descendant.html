@@ -1,0 +1,45 @@
+<!--
+    css에서 특정영역에 style을 적용할때 사용되는 문법
+
+    1)css
+    2)jQuery
+    3)Web Cralling
+
+    ex) 연결 선택자
+    상위요소 하위요소 속성 값
+    section  p      {color : bule;}
+-->
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>후손 찾기</title>
+    <style>
+        /* id가 container 인것의 하위에 있는 모든 ul(후손)
+        하위 선택자,후손선택자 */
+        #container ul{
+            border:  1px dotted blue;
+        }
+    </style>
+</head>
+<body>
+    <section id="container">
+        <header><h1>예약 방법 및 요금</h1></header>
+        <p>
+            <li>예약방법</li>
+            <ul>
+                <li>직접 통화</li>
+                <li>문자 남기기</li>
+            </ul>
+            <li>요금</li>
+            <ul>
+                <li>1인: 40,000원</li>
+                <li>2인: 60,000원</li>
+                <li>3인: 80,000원</li>
+                <li>4인: 100,000원</li>
+            </ul>
+        </p>
+    </section>
+</body>
+</html>
