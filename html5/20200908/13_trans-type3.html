@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #backColor{
+            background-color: orange;
+            width: 200px;
+            height: 100px;
+            border: 3px solid blue;
+            margin: 0 auto;
+        }
+        button{
+            margin: 20px;
+        }
+    </style>
+    <script>
+        function changeBg(){
+            // alert("changeBg called");
+            var back = document.getElementById("backColor");
+            // document.write(typeof back + " : ");
+            // document.write(back + "<br>");
+            // document.write("<hr>");
+            back.style.backgroundColor = "yellowgreen";
+            var title = document.getElementById("title");
+            title.style.color="blue";
+
+        }
+    </script>
+</head>
+<body>
+    <h1 id="title">this is a heading</h1>
+    <div id="backColor">
+        <button type="button" onclick="changeBg()">클릭하세요</button>
+    </div>
+</body>
+</html>

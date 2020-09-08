@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>숫자 알아맞추기</title>
+    <script>
+        //0~99까지의 정수
+        var comNum = parseInt(Math.random()*100);
+        var nGuesses = 0;
+
+        function guess(){
+            var result=0;
+            var num = parseInt(document.getElementById("user").value);
+            nGuesses++;
+
+            if(num == comNum)
+                result ="성공입니다";
+            else if(num<comNum)
+                result = "낮습니다";
+            else    
+                result = "높습니다";
+            document.getElementById("guesses").value=nGuesses;
+            document.getElementById("result").value=result;
+        }
+    </script>
+</head>
+<body>
+    <h2>숫자 맞추기 게임</h2>
+    <p>컴퓨터가 생성한 0~99까지의 숫자를 맞추세요</p>
+    <form>
+        <ul>
+            <li>
+                <label>숫자:
+                    <input type="text" id="user" size="5">
+                </label>
+            </li>
+            <li>
+                <input type="button" onclick="guess();" value="확인">
+            </li>
+            <li>
+                <label>추측회수:
+                    <input type="text" id="guesses" size="5">
+                </label>
+            </li>
+            <li>
+                <label>힌트:
+                    <input type="text" id="result" size="16">
+                </label>
+            </li>
+        </ul>
+    </form>
+        
+</body>
+</html>

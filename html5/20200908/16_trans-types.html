@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1초마다 배경색 랜덤하게 변경하기</title>
+    <script src="libs/jquery-1.11.0.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            setInterval(function(){
+                var color = Math.random()*0xffffff;
+                color = parseInt(color);
+                color = color.toString(16);
+                $("body").css("background-color","#"+color);
+            },1000);
+        });
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

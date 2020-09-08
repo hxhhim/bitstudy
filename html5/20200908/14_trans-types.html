@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JQuery - 형변환</title>
+    <script src="libs/jquery-1.11.0.min.js"></script>
+    <script>
+        // function changeBg(){
+        //     var back = document.getElementById("title");
+        //     back.style.color= 'blue';
+        // }
+            $(document).ready(function(){
+                var bgcolor = 0xf00;
+                $("body").css("background-color","#"+bgcolor.toString(16));
+                $("body").css("background-color","#0f0");
+                $("h1#title").css("color","blue");
+                // var test = document.getElementById("title");
+                // // var test = $("h1");
+                // test.css("color","red");
+                // // alert(test);
+                // $("h1").css("color","red");
+                // $("h1").css("font-weight","100");
+                // $("h1").css("font-style","italic");
+
+                $("h1").css("color","blue").css("font-weight","100").css("font-style","italic");
+
+            });
+    </script>
+</head>
+<body>
+    <h1 id="title">Hello javascript!</h1>
+    <div id="backColor">
+        <button type="button" onclick="changeBg()">클릭하세요</button>
+    </div>
+</body>
+</html>

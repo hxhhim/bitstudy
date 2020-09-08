@@ -1,0 +1,72 @@
+<!-- 
+    자료형
+    1)문자형
+    2)숫자형
+    3)논리형    :true false
+    4)객체형    :object
+    5)undefined : 처음에 선언만 하고 값을 대입하지 않았을때
+    6)null      : null 상태인지 아닌지
+    var를 사용해서 변수를 선언한다. 
+-->
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        //문자형
+        var s = "javascript";
+        document.write(typeof s+" : ");
+        document.write(s+"<br>");
+        //숫자형
+        var n =100;
+        document.write(typeof n+" : ");
+        document.write(n+"<br>");
+        var d = 3.14;
+        document.write(typeof d+" : ");
+        document.write(d+"<br>");
+        var n =Number("500");
+        document.write(typeof n+" : ");
+        document.write(n+"<br>");
+
+        //논리형
+        var b =true;
+        document.write(typeof b+" : ");
+        document.write(b+"<br>");
+        b=Boolean("hello");
+        document.write(typeof b+" : ");
+        document.write(b+"<br>");
+
+        b=Boolean("");
+        document.write(typeof b+" : ");
+        document.write(b+"<br>");
+        b=Boolean(null);
+        document.write(typeof b+" : ");
+        document.write(b+"<br>");
+        b=Boolean(0);
+        document.write(typeof b+" : ");
+        document.write(b+"<br>");
+        b=Boolean(undefined);
+        document.write(typeof b+" : ");
+        document.write(b+"<br>");
+
+        var u;
+        
+        document.write(typeof u+" : ");
+        document.write(u+"<br>");
+
+        var u=null;
+        
+        document.write(typeof u+" : ");
+        document.write(u+"<br>");
+
+        var myCar = {model:"BMW",color:"red"};
+        document.write(typeof myCar+" : ");
+        document.write(myCar+"<br>");
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

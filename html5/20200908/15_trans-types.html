@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="libs/jquery-1.11.0.min.js"></script>
+    <script>
+        alert("head");
+        window.onload =function(){
+            alert("window.onload");
+        }
+        $(document).ready(function(){
+            alert("$(document).ready");
+        });
+    </script>
+</head>
+<body>
+    <script>
+        alert("body");
+    </script>
+</body>
+</html>

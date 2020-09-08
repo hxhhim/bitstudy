@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="libs/jquery-1.11.0.min.js"></script>
+    <script>
+        //<div>태그를 찾아서 녹색을 적용하자.
+            $(document).ready(function(){
+                // $("div").css("color","green");
+                var $div = $("div");
+                $div.css("color","green");
+            });
+            
+    </script>
+</head>
+<body>
+    <div>JQuery를 이용한 노드 찾기</div>
+    <p>
+        $()는 함수를 호출하는 것이다
+        $()함수의 역활은 "선택자"에 해당하는 노드를 찾는것
+    </p>
+    <div>
+        var $fish; 처럼 변수이름에 $를 붙이는 이유는
+        jQuery 기능이 들어있는 변수라는 것을 표현하기 위해서
+    </div>
+</body>
+</html>

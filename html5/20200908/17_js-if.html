@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>12시 이전인지 아닌지?</title>
+    <script>
+        var msg ="";
+        var time = new Date().getHours();
+        alert(time);
+        if(time<12){
+            msg = "Good Morning";
+        }else if(time < 18){
+            msg= "Good Affternoon";
+        }else{
+            msg = "Good Evening";
+        }
+        alert(msg);
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

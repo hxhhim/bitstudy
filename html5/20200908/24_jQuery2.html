@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>id가 menu2인 li태그 색 변경하기</title>
+    <!-- <script src="libs/jquery-1.11.0.min.js"></script> -->
+    <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script>
+        // alert("before window.onload");
+        // window.onload=function(){
+        //     alert("window.onload");
+        //     var menu2 = document.getElementById("menu2");
+        //     var liList = menu2.getElementsByTagName("li");
+
+        //     alert(liList.length);
+        //     for(var i=0; i<liList.length;i++){
+        //         var li = liList[i];
+        //         li.style.color ="#f00";
+        //     }
+        // }
+        // alert("after window.onload");
+        $(document).ready(function(){
+            $("#menu2 li").css("color","#f00");
+        });
+    </script>
+</head>
+<body>
+    <script>alert("body start");</script>
+    <p>#menu2의 li태그 색을 변경하세요</p>
+    <ul class="menu" id="menu1">
+        <li>menu1-1</li>
+        <li>menu1-2</li>
+        <li>menu1-3</li>
+        <li>menu1-4</li>
+        <li>menu1-5</li>
+    </ul>
+    <script>alert("body middle");</script>
+    <ul class="menu" id="menu2">
+        <li>menu1-1</li>
+        <li>menu1-2</li>
+        <li>menu1-3</li>
+        <li>menu1-4</li>
+        <li>menu1-5</li>
+    </ul>
+    <script>alert("body end");</script>
+</body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        var s = 10 + "10"; //문자형
+        document.write(typeof s + " : ");
+        document.write(s + "<br>");
+
+        s = String(10) + "10"; //문자형
+        document.write(typeof s + " : ");
+        document.write(s + "<br>");
+
+        s = true + "10";
+        document.write(typeof s + " : ");
+        document.write(s + "<br>");
+        document.write("<hr>");
+
+        var a = true + 10;
+        document.write(typeof a + " : ");
+        document.write(a + "<br>");
+        document.write("<hr>");
+
+
+        //문자 -> 숫자
+        var val = "3.14";
+        var result = Number(val);
+        var result2 = parseInt(val);    //정수형
+        var result3 = parseFloat(val);  //실수형
+        document.write(typeof result + " : ");
+        document.write(result + "<br>");
+        document.write("<hr>");
+        document.write(typeof result2 + " : ");
+        document.write(result2 + "<br>");
+        document.write("<hr>");
+        document.write(typeof result3 + " : ");
+        document.write(result3 + "<br>");
+        document.write("<hr>");
+        document.write("<hr>");
+
+        //숫자->문자
+        var val = 15;
+        var result = String(val);
+        var result1 = val.toString();
+        var val = 123.456;
+        var result2 = val.toFixed(2); //소수 둘째자리, 반올림
+        var val = 10;
+        var result3 = val +"";
+        var result4 = val.toString(16); //16진수
+        document.write(typeof result1 + " : ");
+        document.write(result1 + "<br>");
+        document.write("<hr>");
+        document.write(typeof result2 + " : ");
+        document.write(result2 + "<br>");
+        document.write("<hr>");
+        document.write(typeof result3 + " : ");
+        document.write(result3 + "<br>");
+        document.write("<hr>");
+        document.write(typeof result4 + " : ");
+        document.write(result4 + "<br>");
+        document.write("<hr>");
+
+        
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
