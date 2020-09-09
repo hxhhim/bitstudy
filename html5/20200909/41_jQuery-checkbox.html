@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="libs/jquery-1.11.0.min.js"></script>
+
+    <script>
+        $(document).ready(function(){
+           
+            var isCheck = false;
+            var $chk = $(".d-checkbox .checkbox");
+            $(".d-checkbox").click(function(){
+                isCheck = !isCheck;
+                if(isCheck){
+                    $chk.addClass("check");
+                }else{
+                    $chk.removeClass("check");
+                }
+            });
+        });
+    </script>
+    <style>
+        body{font-size: 9pt;}
+        .d-checkbox{
+            position: relative;
+            left: 100px;
+            top: 100px;
+        }
+        .d-checkbox .checkbox{
+            width: 20px;
+            height: 15px;
+            float: left;
+            background: url(images/checkbox_uncheck.png) no-repeat;
+        }
+        .d-checkbox .checkbox.check{
+            background: url(images/checkbox_check.png) no-repeat;
+        }
+    </style>
+</head>
+<body>
+    <div class="d-checkbox">
+        <div class="checkbox"></div>
+        <div class="label">
+            체크박스- 여기를 클릭해 보세요
+        </div>
+    </div>
+</body>
+</html>

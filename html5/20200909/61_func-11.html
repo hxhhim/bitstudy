@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+          function calculator1(op,num1,num2,callback){
+            var result=0;
+            switch(op){
+                case "+":
+                    result = num1+num2;
+                    break;
+                case "-":
+                    result = num1-num2;
+                    break;
+                case "*":
+                    result = num1*num2;
+                    break;
+                case "/":
+                    result = num1/num2;
+                    break;
+                default:
+                    result = "지원하지 않는 연산자";
+            }
+            // document.write("정답은 "+result+"입니다<br>");
+            // print1(result);
+            callback(result);
+        }
+          function calculator2(op,num1,num2,callback){
+            var result=0;
+            switch(op){
+                case "+":
+                    result = num1+num2;
+                    break;
+                case "-":
+                    result = num1-num2;
+                    break;
+                case "*":
+                    result = num1*num2;
+                    break;
+                case "/":
+                    result = num1/num2;
+                    break;
+                default:
+                    result = "지원하지 않는 연산자";
+            }
+            // document.write("두수의 연산은 "+result+"입니다<br>");
+            // print2(result);
+            callback(result);
+        }
+        function print1(result){
+            document.write("두수의 연산은 "+result+"입니다<br>");
+        }
+        function print2(result){
+            document.write("정답은"+result+"입니다<br>");
+        }
+        function print3(result){
+            document.write("나의 정답은"+result+"입니다<br>");
+        }
+        calculator1("+",10,20,print1);
+        calculator1("+",10,20,print2);
+        calculator1("+",10,20,print3);
+       
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

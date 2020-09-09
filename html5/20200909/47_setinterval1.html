@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>setInterval() 함수 사용하기</title>
+    <script src="libs/jquery-1.11.0.min.js"></script>
+    <script>
+        var i=0;
+        var timerID=null;
+
+        function writeNum(){
+            document.write(i++ + ", ");
+            if(i==10){
+                clearInterval(timerID);
+            }
+        }
+        function main(){
+            timerID = setInterval(writeNum,100);
+        }
+
+        $(document).ready(main);
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQuery css 다중 스타일</title>
+    <script src="libs/jquery-1.11.0.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $("#btncheck").on("click",function(){
+                //1번째 방법
+                // $("#panel").css("border","4px solid orange");
+                // $("#panel").css("font-size","3em");
+                // $("#panel").css("color","#2233ff");
+                // $("#panel").css("background","gold");
+
+                //2번째 방법
+                // $("#panel").css("border","4px solid orange")
+                // .css("font-size","3em")
+                // .css("color","#2233ff")
+                // .css("background","gold");
+
+                //3번째 방법
+                $("#panel").css({
+                    "border":"4px solid orange",
+                    "font-size": "3em",
+                    "color" : "#2233ff",
+                    "background":"gold"
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+    <button id="btncheck">확인</button>
+    <div id="panel">
+        스타일 설정하기
+    </div>
+</body>
+</html>

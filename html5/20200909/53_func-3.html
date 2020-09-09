@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="libs/jquery-1.11.0.min.js"></script>
+    <script>
+        function hello(){
+            document.write("안녕하세요. 환영합니다.");
+        }
+        function hello1(){
+            document.write("welcom. Thank you !");
+        }
+        function main(){
+            //click의 매개변수로 hello함수를 전달
+            $("#btnstart").click(hello);
+        }
+        $(document).ready(main);
+    </script>
+</head>
+<body>
+    <button id="btnstart">시작</button>
+</body>
+</html>

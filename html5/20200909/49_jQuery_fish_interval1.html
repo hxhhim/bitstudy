@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="libs/jquery-1.11.0.min.js"></script>
+    <script>
+        var count =100;
+        var name = "물고기";
+        var isCheck = false;
+
+        var pos = [[0,0], [75,0], [150, 0], [225, 0], [300, 0], [375, 0], [450, 0], [500, 0],
+                    [500, 75], [500, 150],[500, 225], [500, 300], [500, 375], [500, 450], [500, 500],
+                    [450,500], [375,500], [300, 500], [225, 500], [150, 500], [75, 500], [0, 500],
+                    [0, 450], [0, 375], [0, 300],[0, 225], [0, 150],[0, 75], [0, 50]];
+
+        var selIdx = 0;
+        var prex =0, prey=0;
+
+
+
+        function initCheckEvent(){
+            var $chk = $(".d-checkbox .checkbox");
+            $(".d-checkbox").click(function(){
+                isCheck=!isCheck;
+                if(isCheck)
+                    $chk.addClass("check");
+                else
+                    $chk.removeClass("check");
+                startInterval();
+            });
+            
+        }
+        function moveFish(){
+            var x = pos[selIdx][0];
+            var y = pos[selIdx][1];
+            var $fish = $("#fish");
+            if( x< prex)
+                $fish.attr("src","images/fish_left.png");
+            else if(x>prex)
+                $fish.attr("src","images/fish_right.png");
+            
+            if( y< prey)
+                $fish.attr("src","images/fish_up.png");
+            else if(y>prey)
+                $fish.attr("src","images/fish_down.png");
+
+            prex = x;
+            prey = y;
+
+            selIdx++;
+            if(selIdx > pos.length)
+                selIdx=0;
+            if((x>=0 && x<=500)&&(y>=0&&y<=500)){
+                // $fish.css(
+                //     {"left" : x, "top": y}
+                // );
+                $fish.animate(
+                    {
+                        left:(x+"px"),
+                        top:(y+"px")
+                    },800);
+                
+            }else{
+                alert("입력값이 범위를 벗어났습니다.");
+            }
+            
+        }
+        function startInterval(){
+            // alert("startInterval");
+            if(isCheck){
+                var timerID = setInterval(moveFish,1000);
+            }else{
+                clearInterval(timerID);
+            }
+        }
+        function initClickEvent(){
+            //물고기 노드 구하기
+            var $fish = $("#fish");
+            //버튼에 클릭 이벤트 연결하기
+            $("#btnstart").click(function(){
+                //1.좌표구하기
+                var x = parseInt($("#txtx").val());
+                var y = parseInt($("#txty").val());
+
+                //2.움직이자. 단 범위내에서
+                if((x>=0 && x<=500)&&(y>=0&&y<=500)){
+                    $fish.css({
+                        "left":x,"top":y                        
+                    });
+                }else{
+                    alert("입력값이 범위를 벗어났습니다.");
+                }
+            });
+        }
+
+        function init(){
+            initClickEvent();
+            initCheckEvent();
+        }
+
+        $(document).ready(init);
+    </script>
+    <style>
+        div{margin: 0 auto;}
+        #panel{
+            width: 600px;
+            height: 600px;
+            border: 1px solid black;
+            position: relative;
+        }
+        #fish{
+            position: absolute;
+            left: 50px;
+            top: 120px;
+        }
+        #nav{
+            text-align: center;
+            width: 600px;
+
+        }
+        .d-checkbox{
+            position: relative;
+            left: 150px;
+            top: 10px;
+        }
+        .d-checkbox .checkbox{
+            width: 20px;
+            height: 15px;
+            float: left;
+            background: url("images/checkbox_uncheck.png")no-repeat;
+        }
+        .d-checkbox .checkbox.check{
+            background: url("images/checkbox_check.png")no-repeat;
+        }
+        .label{
+            float: left;
+        }
+    </style>
+</head>
+<body>
+    <div id="panel">
+        <img src="images/fish_right.png" id="fish">
+    </div>
+    <div id="nav">
+        <label for="txtX">x값 입력</label>
+        <input id="txtx"/><br>
+        <label for="texty">y값 입력</label>
+        <input id="txty"/><br>
+        <button id="btnstart">물고기 움직이기</button>
+        <div class="d-checkbox">
+            <div class="checkbox"></div>
+            <div class="label">
+                체크하면 자동으로 움직입니다.
+            </div>
+        </div>
+    </div>
+</body>
+</html>
