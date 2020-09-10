@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>비동기 테스트</title>
+    <script>
+        //1)동기방식은 결과가 나올때까지 대기하는 방식
+        //2)비동기방식은 콜백함수를 전달해서 대기하지 않고
+        //나중에 결과가 나오면 콜백함수를 호출하도록 하는 방식
+        var count=1;
+        var cnt=1;
+        setInterval(function(){
+            document.write("2.count ="+count++ +"<br>");
+        },2000)
+        setInterval(function(){
+            document.write("2.cnt ="+cnt++ +"<br>");
+        },2000)
+        document.write("1.동작이 모두 끝나지 않았어도 바로 실행");
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

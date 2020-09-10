@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>클로저가 아닌 함수</title>
+    <script>
+        function addCount(){
+            var count = 0;
+            count++;
+            return count;
+        }
+        document.write("1.count ="+addCount()+"<br>");
+        document.write("1.count ="+addCount()+"<br>");
+        document.write("1.count ="+addCount()+"<br>");
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

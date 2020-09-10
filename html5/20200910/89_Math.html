@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>원의 넓이</title>
+    <script>
+        function calc(){
+            var rad = Number(document.calculator.number1.value);
+            document.calculator.number2.value= Math.pow(rad,2)*Math.PI;
+        }
+    </script>
+</head>
+<body>
+    <form name="calculator">
+        <label for="num1">반지름 입력:</label>
+        <input id="num1" type="text" name="number1"><br>
+        
+        <label for="num2">계산결과:</label>
+        <input id="num2" type="text" name="number2"><br>
+        <input type="button" value="원의 넓이" onclick="calc()">
+    </form>
+</body>
+</html>

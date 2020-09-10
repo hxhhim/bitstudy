@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function printArray(arr){
+            document.write("[");
+            for(var i=0;i<arr.length;i++){
+                document.write(arr[i]+" ");
+            }
+            document.write("]"+"<br>");
+        }
+        var myArray1 = new Array();
+        myArray1[0] = "apple";
+        myArray1[1] = "banana";
+        myArray1[2] = "orange";
+
+        var myArray2 = new Array("apple","banana","orange");
+        var myArray3 = ["apple","banana","orange"];
+
+        var myArray4 = new Array();
+        myArray4[0] = "apple";
+        myArray4[1] = new Date;
+        myArray4[2] = 3.14;
+
+        var myArray5 = myArray1;
+
+        printArray(myArray1);
+        printArray(myArray2);
+        printArray(myArray3);
+        printArray(myArray4);
+        printArray(myArray5);
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

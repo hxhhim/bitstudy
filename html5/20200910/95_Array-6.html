@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+       var myArray = [10,7,23,99,169,19,11,1];
+       var strArray = ["abc","abb","aa","ccc","bbb"];
+        document.write(myArray,"<br>");
+        document.write(strArray,"<br>");
+
+        myArray.sort();
+        strArray.sort();
+        document.write(myArray,"<br>");
+        document.write(strArray,"<br>");
+
+        //오름차순 정렬
+        myArray.sort(function(a,b){return a-b;});
+        document.write(myArray,"<br>");
+        
+        //내림차순 정렬
+        myArray.sort(function(a,b){return b-a;});
+        document.write(myArray,"<br>");
+        
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

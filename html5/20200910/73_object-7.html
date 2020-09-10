@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>자바스크립트의 prototype</title>
+    <script>
+        function CheckWeight(name,height,weight){
+            this.userName = name;
+            this.userHeight = height;
+            this.userWeight = weight;
+            this.minWeight;
+            this.maxWeight;
+        }
+
+        CheckWeight.prototype.korCode="82";
+        CheckWeight.prototype.getInfo=function(){
+            var str="";
+                str += "이름: " +this.userName+" ";
+                str += "키: " +this.userHeight+" ";
+                str += "몸무게: " +this.userWeight+"<br>";
+                return str;
+        }
+        var kim = new CheckWeight('김연아',168,50);
+        var jang = new CheckWeight('장나라',171,51);
+        kim.test= function(name){
+            document.write(name+"test");
+        }
+        kim.test("김연아");
+        CheckWeight.prototype.test=function(name){
+            document.write(name+"test");
+        }
+        jang.test("장나라");
+        document.write(kim.getInfo());
+
+        var park = new CheckWeight("박지영",168,48);
+        park.test('박지영');
+
+        var abc = 1;
+        abc ="hello";
+        abc = new CheckWeight("aaa",167,55);
+        
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

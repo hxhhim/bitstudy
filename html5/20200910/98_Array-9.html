@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        var numbers =[10,20,30,40,50];
+            function isBigEnough(element,index,array){
+                document.write("element: "+element,"<br>");
+                document.write("index: "+index,"<br>");
+                
+                return(element > 30);
+                // return(index >1);
+            }
+        var filtered = numbers.filter(isBigEnough)
+        document.write(filtered,"<br>");
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

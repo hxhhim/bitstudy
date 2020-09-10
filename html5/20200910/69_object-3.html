@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        var myCar = new Object();
+        myCar.model="520d";
+        myCar.speed = 60;
+        myCar.color = "red";
+        myCar.break = function(){
+            this.speed -= 10;
+        }
+        myCar.accel = function(){
+            this.speed +=10;
+        }
+        document.write(myCar.model,"<br>");
+        document.write(myCar.speed,"<br>");
+        document.write(myCar.color,"<br>");
+        myCar.break();
+        myCar.break();
+        document.write(myCar.speed,"<br>");
+        myCar.accel();
+        myCar.accel();
+        document.write(myCar.speed,"<br>");
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

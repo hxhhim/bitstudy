@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <title>setInterval() 함수 사용하기</title>
+       
+        <script>
+            var i=0;
+            var timerID = setInterval(writeNum,100);
+
+            function writeNum(){
+                document.write( i++ + ", ");
+                if(i==10){
+                    clearInterval(timerID);
+                }
+            }
+      
+        </script>
+    </head>
+    <body>
+
+    </body>
+</html>

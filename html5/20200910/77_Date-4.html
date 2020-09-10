@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>두개의 날짜 비교하기</title>
+    <script>
+        function checkDate(){
+            var s = document.getElementById("pdate").value;
+            // alert(typeof s);
+            var pdate = new Date(s);
+            var today = new Date();
+            // var time = parseInt(today);
+            // alert(time);
+            //날짜 간격을 milliseconds단위로 계산
+            var diff = today.getTime()-pdate.getTime();
+            //Math.floor(); 소수점 버리기
+            //Math.ceil(); 올림
+            //Math.round(); 반올림
+            //밀리초->일
+            var days = Math.floor(diff/(1000*60*60*24));
+            if(days>30)
+                alert("교환기간이 지났습니다.");
+        }
+    </script>
+</head>
+<body>
+    <label for="pdate">구입날짜:</label>
+    <input id="pdate" type="date">
+    <button onclick="checkDate()">검사</button>
+</body>
+</html>
