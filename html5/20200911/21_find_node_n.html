@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>노드찾기 기본구성</title>
+    <script src="libs/jquery-1.11.0.min.js"></script>
+    <script>
+       $(document).ready(function(){
+            $("ul li").click(function(){
+                console.log("index "+$(this).index());
+            });
+       });
+    </script>
+    <style>
+       ul.li{
+           border:  1px #eeeeee solid;
+           margin: 10px;
+
+       }
+       ul{
+           padding: 10px;
+       }
+    </style>
+</head>
+<body>
+   <ul>
+       <li><a href="#">menu1</a></li>
+       <li><a href="#">menu2</a></li>
+       <li><a href="#">menu3</a></li>
+       <li><a href="#">menu4</a></li>
+   </ul>
+   
+</body>
+</html>

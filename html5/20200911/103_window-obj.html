@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        //window 객체 메서드
+        //-open, alert,prompt,confirm
+        // setInterval, setTimeout
+        // moveBy(x,y),moveTo(x,y),resizeBy(x,y)
+        // resizeTo(x,y).scrollBy(x,y),scrollTo(x,y)
+        // focus(),blur(),close()
+        window.onload = function(){
+            // alert("window.onload");
+            var win = window.open("101_try-catch-2.html",'','width=800, height=600');
+            win.moveTo(500,500);
+            window.setTimeout(function(){
+                win.close();
+            },5000);
+        }
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

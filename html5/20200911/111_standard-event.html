@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function setPosition(){
+            document.getElementById("demo").innerHTML = "X좌표: "+event.x +"&nbsp;&nbsp;&nbsp;"
+            +"Y좌표: "+event.y;
+        }
+        function addEventHandler(){
+            document.getElementById("box").addEventListener(
+                "mousemove",setPosition);
+                    
+        }
+        function removeHandler(){
+            document.getElementById("box").removeEventListener(
+                "mousemove",setPosition);
+            document.getElementById("demo").innerHTML ="";
+        }
+    </script>
+    <style>
+        #box{
+            background-color: orange;
+            border:1px solid black;
+            padding: 5px;
+            color: white;
+            width: 600px;
+            height: 400px;
+        }
+    </style>
+</head>
+<body>
+    <div id="box">
+        <button onclick="addEventHandler()" id="startbtn">시작</button>
+        <button onclick="removeHandler()" id="stopbtn">정지</button>
+        
+    </div>
+    <p id="demo"></p>
+</body>
+</html>

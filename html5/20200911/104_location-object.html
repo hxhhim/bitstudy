@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>location 오브젝트</title>
+    <script>
+        //locatioin 객체
+        //-href,host,hostname,port,pathname
+        // hash,search, protocol
+        // -reload(),replace()
+        var t = new Date();
+        document.write(t.getHours() + ":" +t.getMinutes()   
+                    +":"+t.getSeconds());
+        // setInterval(function(){
+        //     location.reload();
+        // },1000);
+        setTimeout(function(){
+            // location.href = "https://www.daum.net";
+            location.replace("https://www.daum.net");
+        },5000);
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQuery 사용 준비</title>
+    <script src="libs/jquery-1.11.0.min.js"></script>
+    <script>
+        //ready()메서드는 DOMCondentLoaded 이벤트를 포함한 메서드이다.
+        //ready()시점에는 무거운 이미지가 플래시 파일이 완전히 로딩되지 않는 경우가 있다.
+        //그래서 처음에는 너비가 0으로 나올때가 있는데 
+        //2번째부터는 캐시를 읽어서 잘 나온다.
+        $(document).ready(function(){
+            console.log("width =" + $("#target").width());
+        });
+    </script>
+    <script>
+
+    </script>
+</head>
+<body>
+    <img src="images/logo_01.jpg" id="target">
+</body>
+</html>
