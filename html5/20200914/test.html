@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>탭 메뉴 아이템 개수 출력하기</title>
+    <style>
+        .tab-memu{
+            list-style: none;
+            height: 80px;
+        }
+        .tab-menu li{
+            width: 99px;
+            height: 40px;
+            background-position-y: 0;
+            text-indent: -1000px; 
+            overflow: hidden;
+            display: inline-block;
+        }
+        .tab-menu li:hover{
+            background-position-y: -40px;
+        }
+        .tab-menu li.select{
+            background-position-y: -80px;
+            height: 80px;
+        }
+        .tab-menu li.menuitem1{
+            background-image: url("images/newbtn.bar.1.png");
+        }
+        .tab-menu li.menuitem2{
+            background-image: url("images/newbtn.bar.2.png");
+        }
+        .tab-menu li.menuitem3{
+            background-image: url("images/newbtn.bar.3.png");
+        }
+        .tab-menu li.menuitem4{
+            background-image: url("images/newbtn.bar.4.png");
+        }
+        .tab-menu li.menuitem5{
+            background-image: url("images/newbtn.bar.5.png");
+        }
+        .tab-menu li.menuitem6{
+            background-image: url("images/newbtn.bar.6.png");
+        }
+    </style>
+    <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script>
+        
+        
+        $(document).ready(function(){
+            var $liList = $("#tabMenu1 li");
+            var i = 0;
+            var timerID = setInterval(function(){
+                if(i < $liList.length){
+                    $liList.eq(i).addClass("select");
+                    $liList.eq(i-1).removeClass("select");
+                }else{
+                    $liList.eq(($liList.length * 2 - 2) - i).addClass("select");
+                    $liList.eq(($liList.length * 2 - 1) - i).removeClass("select");
+                }
+                i++;
+
+                if(i == $liList.length * 2 - 1)
+                    i = 0;
+
+            }, 1000);
+        });
+        
+    </script>
+</head>
+<body>
+    <ul class="tab-menu" id="tabMenu1">
+        <li class="menuitem1">google</li> 
+        <li class="menuitem2">facebook</li>
+        <li class="menuitem3">pinterest</li>
+        <li class="menuitem4">twitter</li>
+        <li class="menuitem5">airbnb</li>
+        <li class="menuitem6">path</li>
+    </ul>
+</body>
+</html>
