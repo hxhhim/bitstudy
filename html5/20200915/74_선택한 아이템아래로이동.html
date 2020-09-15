@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="libs/jquery-1.11.0.min.js"></script>
+    <script>
+        var $menu =null;
+        var $menuName = null;
+        var $selectedItem = null;
+
+        $(document).ready(function(){
+            init();
+            initEvent();
+        });
+        //사용할 노드를 얻기
+        function init(){
+            $menu = $("ul.menu");
+            $menuName = $("#menuName");
+
+        }
+        //이벤트 연결
+        function initEvent(){
+            $("#add").click(function(){
+                addMenu();
+            })
+            $("#update").click(function(){
+                updateMenu();
+            })
+            $("#remove").click(function(){
+                removeMenu();
+            })
+            $("#up").click(function(){
+                moveUpmenu();
+            })
+            $("#down").click(function(){
+                moveDownmenu();
+            })
+            $menu.on("click","li",function(){
+                // alert("click li");
+                selectItem($(this));
+            })
+
+        }
+        function selectItem($item){
+            if($selectedItem !=null)
+                $selectedItem.removeClass("select");
+
+            $item.addClass("select");
+            $selectedItem = $item;
+        }
+        function addMenu(){
+            var menuName = $menuName.val();
+            var newMenuItem = "<li>" + menuName +"</li>";
+            if($selectedItem !=null)
+                $selectedItem.after(newMenuItem);
+            else
+                $menu.append(newMenuItem);
+        }
+        function updateMenu(){
+            var menuName = $menuName.val();
+            if($selectedItem !=null){
+                $selectedItem.html(menuName);
+            }else{
+                alert("선택한 메뉴가 존재하지 않습니다.");
+            }
+        }
+        function removeMenu(){
+            if($selectedItem !=null){
+                $selectedItem.remove();
+                $selectedItem = null;
+            }else{    
+                alert("선택한 메뉴가 존재하지 않습니다.");
+            }
+        }
+        function moveUpmenu(){
+            if($selectedItem !=null){
+                var $prevItem = $selectedItem.prev();
+                if($prevItem)
+                    $selectedItem.insertBefore($prevItem);
+            }else{
+                alert("선택한 메뉴가 존재하지 않습니다.");
+            }
+        }
+        function moveDownmenu(){
+            if($selectedItem !=null){
+                var $nextItem = $selectedItem.next();
+                if($nextItem)
+                    $selectedItem.insertAfter($nextItem);
+            }else{
+                alert("선택한 메뉴가 존재하지 않습니다.");
+            }
+        }
+    </script>
+    <style>
+        ul.menu{
+            padding: 10px;
+            list-style: none;
+            border: 1px #000 solid;
+        }
+        ul.menu li{
+            border: 1px #eeeeee solid;
+            margin: 10px;
+        }
+        ul.menu .select{
+            border: 1px solid #f00;
+            
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <input type="text" id="menuName">
+        <button id="add">추가</button>
+        <button id="update">수정</button>
+        <button id="remove">삭제</button>
+        <button id="up">UP</button>
+        <button id="down">DOWN</button>
+    </div>
+    <ul class="menu">
+
+    </ul>
+</body>
+</html>

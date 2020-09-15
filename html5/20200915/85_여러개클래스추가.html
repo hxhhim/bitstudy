@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="libs/jquery-1.11.0.min.js"></script>
+    <script>
+        $(document).ready(function(){
+           $("ul.menu li").click(function(){
+                $(this).addClass("select border");
+           });
+        });
+    </script>
+    <style>
+        ul.menu{
+            padding: 10px;
+            list-style:none;
+            background: #f00;
+            border: 1px #000 solid;
+        }
+        ul.menu li{
+            border: 1px #eeeeee solid;
+            margin: 10px;
+        }
+        li.select{
+            background-color: #ccc;
+        }
+        li.border{
+            border: 4px solid #ff00;
+        }
+        /* ul.menu li.border{
+            border: 4px solid #f00;
+        }
+        ul.menu li.select{
+            background-color: #ff33;
+        } */
+
+    </style>
+</head>
+<body>
+    <button id="test1">실행</button>
+    <ul class="menu">
+        <li>menu1</li>
+        <li>menu2</li>
+        <li class="select">menu3</li>
+        <li>menu4</li>
+        <li>menu5</li>
+
+    </ul>
+</body>
+</html>

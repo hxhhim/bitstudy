@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="libs/jquery-1.11.0.min.js"></script>
+    <script>
+        //자바스크립트
+        // window.onload=function(){
+        //     var content = document.getElementById("test1");
+        //     content.style.fontSize = "100px";
+        //     content.style.fontSize = "100";//적용안됨
+        //     content.style.border ="4px solid #f00";
+        // }
+       //jquery
+        $(document).ready(function(){
+            var $content =$("#test1");
+            $content.css("font-size",100);
+
+            // $content.css({
+            //     "font-size":"5px",
+            //     "border":"4px solid #f00"
+            //     });
+        });
+    </script>
+    <style>
+        div{
+            margin: 30px;
+            padding: 30px;
+            font-size: 24px;
+        }
+    </style>
+</head>
+<body>
+    <div id="test1" class="content" style="color: #f00;">스타일 다루기</div>
+</body>
+</html>

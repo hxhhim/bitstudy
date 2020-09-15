@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="libs/jquery-1.11.0.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            //자바스크립트 기본 메서드로 접급하는 경우
+            var content = document.getElementById("test1");
+            //인라인 스타일 접근
+            console.log("1. color =", content.style.color);
+
+            console.log("2. border =", content.style.border);
+
+            console.log("3. border =", window.getComputedStyle(content).border);
+        });
+    </script>
+    <style>
+        div{
+            margin: 30px;
+            padding: 30px;
+            font-size: 24px;
+        }
+    </style>
+</head>
+<body>
+    <div id="test1" class="content" style="color: #f00;"></div>
+</body>
+</html>
