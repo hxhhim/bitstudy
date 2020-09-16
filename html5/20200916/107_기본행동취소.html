@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $("#test").one("click",function(e){
+                alert("환영합니다.")
+                e.preventDefault();
+            })
+        });
+    </script>
+</head>
+<body>
+    <a href="https://www.daum.net" id="test">daum 이동</a>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script>
+        var $menu = null;
+        var count= 5;
+        $(document).ready(function(){
+            init();
+            initEvent();
+        });
+        function init(){
+            $menu = $(".menu");
+        }
+        function initEvent(){
+            $("#add").click(function(){
+                addMenu();
+            });
+            //메뉴 항목 클릭 이벤트
+            //현재 ul.menu li 를 찾아서 이벤트를 등록
+            //나중에 추가된 것은 이벤트 등록 X
+            $("ul.menu li").on("click",function(){
+                alert($(this).html());
+            })
+        }
+        function addMenu(){
+            var menuName = "menu "+count++;
+            var newMenuItem = "<li>"+menuName+"</li>";
+            $menu.append(newMenuItem);
+        }
+
+    </script>
+</head>
+<body>
+    <button id="add">추가</button>
+    <ul class="menu">
+        <li>menu1</li>
+        <li>menu2</li>
+        <li>menu3</li>
+        <li>menu4</li>
+    </ul>
+</body>
+</html>

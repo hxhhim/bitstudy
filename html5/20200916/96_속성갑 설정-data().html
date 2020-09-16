@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            var $targetList = $(".target");
+
+            $targetList.click(function(){
+                var $target = $(this);
+
+                var sw = $target.data("sw");
+
+                if(sw){
+                    $target.attr("src","images/ch1.png");
+                }else{
+                    $target.attr("src","images/ch2.png");
+                }
+
+                $target.data("sw",!sw);
+
+            })
+        });
+    </script>
+    <style>
+        div{
+            display: inline-block;
+            margin: 0 30px;
+        }
+    </style>
+</head>
+<body>
+    <div class="panel1">
+        <p>테스트1</p>
+        <img src="images/ch2.png" class="target" data-sw="true">
+    </div>
+    <div class="panel2">
+        <p>테스트2</p>
+        <img src="images/ch2.png" class="target" data-sw="true">
+    </div>
+    <div class="panel3">
+        <p>테스트3</p>
+        <img src="images/ch2.png" class="target" data-sw="true">
+    </div>
+</body>
+</html>

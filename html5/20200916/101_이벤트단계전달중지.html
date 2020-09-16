@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            body{
+                font-size : 2em;
+            }
+            *{
+                margin:30px;
+                border: 1px solid #f00;
+                min-height: 20px;
+                cursor:pointer;
+            }
+            #A1, #A2{background-color: cornflowerblue;}
+            #B1, #B2{background-color: gold;}
+            #C1, #C2{background-color: darkkhaki;}
+        </style>
+         <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+        <script>
+            //자바스크립트의 이벤트는 3단계로 이루어진다.
+            //1. 캡쳐 -> 2. 타깃 -> 3. 버블 
+
+            //e.eventPhase는 각 단계를 나타내고
+            //count는 이벤트 발생의 순서를 나타낸다.
+
+            //jQuery는 캡쳐단계는 이벤트 등록을 할 수 없고
+            //타깃과 버블단계만 가능하다.
+
+
+            //자바스크립트 메서드로 캡쳐단계 등록 방법은
+            //대상.addEventListener(이벤트이름,리스너,true);
+            //자바스크립트 메서드로 타깃/버블단계 등록 방법은
+            //대상.addEventListener(이벤트이름,리스너,false);
+            // 캡쳐단계 : 부모 --> 자식
+            // 버블링 : 자식 --> 부모
+            var count = 0;
+            $(document).ready(function(){
+                //캡쳐 단계에 이벤트 등록
+                document.addEventListener("click",function(e){
+                    count++;
+                    console.log("01. doucment phase = " +
+                        e.eventPhase, "count=" + count);
+                },true);
+
+                //캡쳐 단계에 이벤트 등록
+                document.body.addEventListener("click",function(e){
+                    count++;
+                    console.log("02. body phase = " +
+                        e.eventPhase, "count=" + count);
+                },true);
+
+                //캡쳐 단계에 이벤트 등록
+                $("#A1").get(0).addEventListener("click",function(e){
+                    count++;
+                    console.log("03. A1 phase=" +
+                              e.eventPhase, "count= " + count);
+                },true);
+
+                //캡쳐 단계에 이벤트 등록
+                $("#B1").get(0).addEventListener("click",function(e){
+                    count++;
+                    console.log("04. B1 phase=" +
+                              e.eventPhase, "count= " + count);
+                },true);
+
+
+                //캡처단계에 이벤트 등록
+                $("#A2").get(0).addEventListener("click",function(e){
+                    count++;
+                    console.log("05. A2 phase=" +
+                              e.eventPhase, "count= " + count);
+                },true);
+
+                $(document).on("click",function(e){
+                    count++;
+                    console.log("11.document phase="+e.eventPhase,"count="+count);
+                })
+                $("body").on("click",function(e){
+                    count++;
+                    console.log("12.body phase="+e.eventPhase,"count="+count);
+                })
+                $("#A1").on("click",function(e){
+                    count++;
+                    console.log("13.A1 phase="+e.eventPhase,"count="+count);
+                })
+                $("#B1").on("click",function(e){
+                    count++;
+                    console.log("14.B1 phase="+e.eventPhase,"count="+count);
+                })
+                $("#A2").on("click",function(e){
+                    count++;
+                    console.log("15.A2 phase="+e.eventPhase,"count="+count);
+                })
+                $("#B2").on("click",function(e){
+                    count++;
+                    console.log("16.B2 phase="+e.eventPhase,"count="+count);
+                })
+
+
+
+
+
+
+            });
+        </script>
+    </head>
+    <body>
+        <div id="A1">
+            A1
+            <div id="B1">
+                B1
+                <div id="C1">
+                    C1
+                </div>
+            </div>
+        </div>
+
+        <div id="A2">
+            A2
+            <div id="B2">
+                B2
+                <div id="C2">
+                    C2
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

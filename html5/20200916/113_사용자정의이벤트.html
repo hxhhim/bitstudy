@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script>
+        //사용자 정의 이벤트
+        var $output = null;
+        var $menu= null;
+        var count = 0;
+
+        $(document).ready(function(){
+            init();
+            initAddEvent();
+            receiveEvent();
+        });
+        function init(){
+            $output = $("#output");
+            $menu = $("ul.menu");
+
+        }
+        function initAddEvent(){
+            $("#add").click(function(){
+                //버튼이 눌릴 때마다 새항목이 등록
+                count++;
+                var $newItem = $("<li> new"+count+"</li>");
+                $menu.append($newItem);
+
+                //이벤트 발생
+                dispatchEvent($newItem);
+            });
+        }
+        //이벤트 발생
+        function dispatchEvent($newItem){
+            //사용자 이벤트 객체 생성
+            //addItem:이벤트명
+            var event = jQuery.Event("addItem");
+            //이벤트 정보 추가
+           var data = [$newItem,$newItem.text(),$menu.children().length];
+            //$menu객체에 이벤트 전달
+            $menu.trigger(event,data);
+        }
+        //이벤트 수신
+        function receiveEvent(){
+            //$menu 객체는  addItem이벤트 발생이 되면
+            //여기서 처리한다.
+            $menu.on("addItem",function(e,$item,itemName,itemLength){
+                $output.prepend("<p>추가 아이템 = "+itemName+", 아이템 갯수 = "+itemLength+"</p>");
+            });
+        }
+    </script>
+    <style>
+        ul,li{
+            border: 1px #eeeeee solid;
+            margin: 10px;
+        }
+        ul{
+            padding: 10px;
+        }
+        li.select{
+            background-color: #ccc;
+        }
+        #output{
+            border: 1px solid #000;
+            min-height: 100px;
+        }
+    </style>
+</head>
+<body>
+    <button id="add">추가</button><br>
+    <ul class="menu">
+        <li>menu1</li>
+        <li>menu2</li>
+        <li>menu3</li>
+        <li>menu4</li>
+    </ul>
+    <p>추가/삭제 정보가 출력되는 영역</p>
+    <div id="output"></div>
+</body>
+</html>

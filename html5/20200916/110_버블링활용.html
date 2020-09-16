@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script>
+        var $menu = null;
+        var count= 5;
+        $(document).ready(function(){
+            init();
+            initEvent();
+        });
+        function init(){
+            $menu = $(".menu");
+        }
+        function initEvent(){
+            $("#add").click(function(){
+                addMenu();
+            });
+            $("ul.menu").on("click",function(e){
+                console.log("테스트="+e.target.tagName);
+
+                if(e.target.tagName=="LI"){
+                    alert($(e.target).html());
+                }
+            });
+            $("ul.menu li").on("click",function(){
+                alert($(this).html());
+            })
+        }
+        function addMenu(){
+            var menuName = "menu "+count++;
+            var newMenuItem = "<li>"+menuName+"</li>";
+            $menu.append(newMenuItem);
+        }
+
+    </script>
+</head>
+<body>
+    <button id="add">추가</button>
+    <ul class="menu">
+        <li>menu1</li>
+        <li>menu2</li>
+        <li>menu3</li>
+        <li>menu4</li>
+    </ul>
+</body>
+</html>

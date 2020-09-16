@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>이벤트 단계 중지</title>
+        <style>
+            body{
+                font-size: 2em;
+            }
+            *{
+                margin: 30px;
+                border: 1px solid #f00;
+                min-height: 20px;
+                cursor: pointer;
+            }
+            #A1, #A2{background-color: cornflowerblue;}
+            #B1, #B2{background-color: gold;}
+            #C1, #C2{background-color: darkkhaki;}
+        </style>
+        <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+        <script>
+            //자바스크립트의 이벤트는 3단계로 이루어진다.
+            //1. 캡처 -> 2. 타겟 -> 3. 버블
+            //캡처: 가장 큰 부분에서 작은 부분으로 내려가는 것
+            //타겟: 캡처를 통해 가장 작은 것으로 내려온 것을 가리키는 것
+            //버블: 가장 작은 부분에서 큰 부분으로 올라가는 것
+            /*
+            어떤 이벤트가 일어나면 가장 큰것에서 부터 시작되서(캡처) 
+            이벤트가 일어난 것을 찾고(타겟) 찾으면 찾았다는 신호를 돌려준다(버블)
+            */
+
+            //e.eventPhase는 각 단계를 나타내고 count는 이벤트 발생의 순서를 나타낸다.
+
+            //jQuery는 캡처단계는 이벤트 등록을 할 수 없고
+            //타겟과 버블단계만 가능하다.
+
+            //자바스크립트 메서드의 캡처단계 등록 방법
+            //대상(클릭).addEventLister(이벤트 이름,Lister,true);
+
+            //자바스크립 메서드로 타겟/버블단계 등록방법
+            //대상.addEventLister(이벤트 이름,리스너,false);
+            //캡처단계 : 부모 --> 자식
+            //버블링 : 자식 --> 부모
+
+            //이벤트 단계 중지
+            //e.stopPropagation();
+
+            var count = 0;
+            $(document).ready(function(){
+                //캡처단계에서 이벤트 등록
+                document.addEventListener("click",function(e){
+                    count++;
+                    console.log("01. document phase = " + e.eventPhase, "count = " + count);
+                },true);
+                document.body.addEventListener("click",function(e){
+                    count++;
+                    console.log("02. body phase = " + e.eventPhase, "count = " + count);
+                },true);
+                $("#A1").get(0).addEventListener("click",function(e){
+                    count++;
+                    console.log("03. A1 phase= " + e.eventPhase, "count= " + count);
+                },true);
+                $("#B1").get(0).addEventListener("click",function(e){
+                    count++;
+                    console.log("04. B1 phase= " + e.eventPhase, "count= " + count);
+                },true);
+                $("#C1").get(0).addEventListener("click",function(e){
+                    count++;
+                    console.log("05. C1 phase= " + e.eventPhase, "count= " + count);
+                },true);
+                $("#A2").get(0).addEventListener("click",function(e){
+                    count++;
+                    console.log("06. A2 phase= " + e.eventPhase, "count= " + count);
+                },true);
+                $("#B2").get(0).addEventListener("click",function(e){
+                    count++;
+                    console.log("07. B2 phase= " + e.eventPhase, "count= " + count);
+                },true);
+                $("#C2").get(0).addEventListener("click",function(e){
+                    count++;
+                    console.log("08. C2 phase= " + e.eventPhase, "count= " + count);
+                },true);
+
+                 //버블 단계에 이벤트 등록
+                 $(document).on("click",function(e){
+                    count++;
+                    console.log("11. document phase= " + e.eventPhase,"count= " + count)   
+                });
+                $("body").on("click",function(e){
+                    count++;
+                    console.log("12. body phase= " + e.eventPhase,"count= " + count)   
+                });
+                $("#A1").on("click",function(e){
+                    count++;
+                    console.log("13. A1 phase= " + e.eventPhase,"count= " + count)   
+                });
+                $("#B1").on("click",function(e){
+                    count++;
+                    console.log("14. B1 phase= " + e.eventPhase,"count= " + count)   
+                });
+                $("#C1").on("click",function(e){
+                    count++;
+                    console.log("15. C1 phase= " + e.eventPhase,"count= " + count)   
+                });
+                $("#A2").on("click",function(e){
+                    count++;
+                    console.log("16. A2 phase= " + e.eventPhase,"count= " + count)   
+                });
+                $("#B2").on("click",function(e){
+                    count++;
+                    console.log("17. B2 phase= " + e.eventPhase,"count= " + count) 
+                    //
+                    e.stopPropagation();  
+                });
+                $("#C2").on("click",function(e){
+                    count++;
+                    console.log("18. C2 phase= " + e.eventPhase,"count= " + count)  
+                    //e.stopPropagation();
+                });
+
+            });
+        </script>
+    </head>
+
+    <body>
+        <div id="A1">
+            A1
+            <div id="B1">
+                B1
+                <div id="C1">
+                    C1
+                </div>
+            </div>
+        </div>
+
+        <div id="A2">
+            A2
+            <div id="B2">
+                B2
+                <div id="C2">
+                    C2
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

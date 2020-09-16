@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            var $img = $("#target");
+            var sw = true;
+            $img.click(function(){
+                if(sw){
+                    $img.attr("src","images/ch1.png");
+                }else
+                    $img.attr("src","images/ch2.png");
+                
+                sw=!sw;
+            })
+        })
+    </script>
+
+</head>
+<body>
+    <img src="images/ch2.png" id="target">
+</body>
+</html>
