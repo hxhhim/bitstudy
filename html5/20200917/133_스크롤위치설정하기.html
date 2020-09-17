@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            var $info =$("#info");
+            var $container = $("#container");
+
+            //스크롤 마지막 위치 구하기
+            var scrollEnd = $container.find("img").width()-$container.width();
+            $("#btn").click(function(){
+                //스크롤 위치 값 구하기
+                var left = $container.scrollLeft();
+                var count = 0;
+
+                var timerID = setInterval(function(){
+                    left+=100;
+                    $container.scrollLeft(left);
+                    count++;
+                    $info.html(count+", left= "+left+" ,scrollEnd = "+scrollEnd);
+                    if(left>= scrollEnd)
+                        clearInterval(timerID);
+                },500);
+                
+            })
+
+        });
+    </script>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .nav{
+            margin: 30px 0 0 50px;
+
+        }
+        #btn{
+            width: 50px;
+            height: 30px;
+
+        }
+        #container{
+            position: absolute;
+            width: 800px;
+            height: 600px;
+            left: 50px;
+            top: 100px;
+            border: 1px solid #000;
+            overflow: scroll;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="nav">
+        <button id="btn">확인</button>
+        <div id="info">
+            여기에 스크롤 정보가 출력됨
+        </div>
+    </div>
+    <div id="container">
+        <img src="images/sample.jpg">
+    </div>
+</body>
+</html>

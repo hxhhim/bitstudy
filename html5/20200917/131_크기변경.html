@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            var $child = $("#child");
+            $("#btn1").click(function(){
+                $child.width(200);
+                $child.height(200);
+            });
+            $("#btn2").click(function(){
+                $child.innerWidth(200);
+                $child.innerHeight(200);
+            })
+        })
+    </script>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .nav{
+            margin: 30px 0 0 50px;
+
+        }
+        #parent1{
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            left: 50px;
+            top: 100px;
+            border: 1px solid #000;
+        }
+        #child{
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            left: 100px;
+            top: 100px;
+            background-color: #ccc;
+            padding: 20px;
+            border: 30px solid #000;
+        }
+    </style>
+</head>
+<body>
+    <div class="nav">
+        <button id="btn1">
+            width()를 활용한 크기변경 
+        </button>
+        <br>
+        <button id="btn2">
+            innerWidth()를 활용한 크기변경
+        </button>
+        <br>
+    </div>
+    <div id="parent1">
+        parent1
+        <div id="child">
+            child
+        </div>
+    </div>
+</body>
+</html>

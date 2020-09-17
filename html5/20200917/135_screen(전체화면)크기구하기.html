@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            init();
+            //윈도우 크기가 변경되는 경우 documnet 크기 출력
+            showInfo();
+           
+        });
+        function showInfo(){
+            var strInfo ="";
+            strInfo +='screen.width()= '+screen.width+"<br>";
+            strInfo +='screen.height()= '+screen.height+"<br>";
+
+            $("#info").html(strInfo);
+        }
+        function init(){
+            for(var i=0; i<10; i++){
+                $("#main").append(pad(i,4)+"<br>");
+            }
+        }
+        function pad(n, width){
+            n = n+'';
+            if(n.length>=width){
+                return n;
+                
+            }else{
+                return new Array(width-n.length+1).join('0')+n;
+            }
+        }
+    </script>
+    <style>
+        body{
+            margin: 0;
+            padding: 0;
+        }
+        #main{
+            border: 1px dotted #f00;
+            width: 500px;
+            margin: 50px;
+        }
+        #info{
+            border: 10px solid #f00;
+            position: fixed;
+            left: 120px;
+            top: 100px;
+            font-size: 2em;
+            font-weight: bold;
+        }
+
+    </style>
+</head>
+<body>
+    <div id="main"></div>
+    <div id="info">
+        여기에 문서의 크기를 출력
+    </div>
+</body>
+</html>

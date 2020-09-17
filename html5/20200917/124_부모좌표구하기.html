@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script>
+
+    </script>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        #parent1{
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            left: 100px;
+            top: 100px;
+            background-color: #ccc;
+        }
+        #parent2{
+            margin: 50px;
+            background-color: #ff0;
+            width: 200px;
+            height: 200px;
+        }
+        #child{
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            left: 50px;
+            top: 100px;
+            background-color: #f00 ;
+        }
+    </style>
+</head>
+<body>
+    <!-- 일반 js 프로그래밍에서는  parent2가 child의 부모이지만
+    좌표에서는 child의 부모좌표는 position:absolute나 position:relative로 설정된 조상노드중에서 가장 
+    가까운 노드가 부모가 된다. 그러므로 현재 child의 좌표부모는 parent1이 된다. -->
+    <div id="parent1">
+        parent1
+        <div id="parent2">
+            parent2
+            <div id="child">
+                child
+            </div>
+        </div>
+    </div>
+</body>
+</html>
