@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script>
+        var $imgs= null; //이미지 목록저장 변수
+        $(document).ready(function(){
+            init(); //객체 얻기
+            initImagePos(); //이미지 위치시키기
+        });
+        function initImagePos(){
+            $imgs.each(function(){
+                var left = Math.floor(Math.random()*700);
+                var top = Math.floor(Math.random()*340);
+
+                $(this).css({
+                    left: left,
+                    top: top
+                });
+            });
+        }
+        function init(){
+            $imgs = $(".container img");
+        }
+    </script>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .wrap{
+            margin: 50px;
+        }
+        .select{
+            width: 800px;
+            height: 100px;
+            border: 1px solid black;
+        }
+        .sleect img{
+            width: 150px;
+            float: left;
+        }
+        .container{
+            position: absolute;
+            width: 800px;
+            height: 400px;
+            border: 1px solid black;
+        }
+        .container img{
+            position: absolute;
+            width: 100px;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrap">
+        <div class="select"></div>
+        <div class="container">
+            <img src="images/1.png">
+            <img src="images/2.png">
+            <img src="images/3.png">
+            <img src="images/4.png">
+            <img src="images/5.png">
+        </div>
+    </div>
+</body>
+</html>

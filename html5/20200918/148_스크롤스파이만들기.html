@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            init();
+        });
+        function init(){
+            addNum("#con1",0,50);
+            addNum("#con2",51,500);
+        }
+        function addNum(selector,beginNum,endNum){
+            var widthSize = endNum.toString().length;
+            for(var i=beginNum; i<=endNum;i++){
+                $(selector).append(pad(i,widthSize)+"<br>");
+            }
+        }
+        function pad(n,width){
+            n=n+'';
+            if(n.length >= width)
+                return n;
+            else    
+                return new Array(width-n.length +1).join('0')+n;
+        }
+    </script>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .wrap{
+            margin: 50px;
+        }
+        .content{
+            border: 1px dotted red;
+        }
+        .tab-menu{
+            list-style: none;
+            height: 80px;
+            background-color: white;
+        }
+        .tab-menu li{
+            width: 99px;
+            height: 40px;
+            background-position-y:0 ;
+            text-indent: -1000px;
+            overflow: hidden;
+            display: inline-block;
+        }
+        .tab-menu li:hover{
+            background-position-y: -40px;
+        }
+        .tab-menu li.select{
+            background-position-y: -80px;
+            height: 80px;
+            
+        }
+        .tab-menu li.menuitem1{
+            background-image: url(images/newbtn.bar.1.png);
+        }
+        .tab-menu li.menuitem2{
+            background-image: url(images/newbtn.bar.2.png);
+        }
+        .tab-menu li.menuitem3{
+            background-image: url(images/newbtn.bar.3.png);
+        }
+        .tab-menu li.menuitem4{
+            background-image: url(images/newbtn.bar.4.png);
+        }
+        .tab-menu li.menuitem5{
+            background-image: url(images/newbtn.bar.5.png);
+        }
+        .tab-menu li.menuitem6{
+            background-image: url(images/newbtn.bar.6.png);
+        }
+        .tab-menu.fixed{
+            position: fixed;
+            left: 0;
+            top: 0;
+            margin: 0;
+            margin-left: 50px;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrap">
+        <div class="content" id="con1"></div>
+        <div class="menu-container">
+            <ul class="tab-menu" id="tabMenu1">
+                <li class="menuitem1 select">google</li>
+                <li class="menuitem2 ">facebook</li>
+                <li class="menuitem3 ">pinterest</li>
+                <li class="menuitem4 ">twitter</li>
+                <li class="menuitem5 ">airbnb</li>
+                <li class="menuitem6 ">path</li>
+            </ul>
+        </div>
+        <div class="content" id="con2"></div>
+    </div>
+</body>
+</html>

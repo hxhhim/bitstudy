@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script>
+        var $imgs= null; //이미지 목록저장 변수
+        var $dragTarget = null; //선택된 이미지 객체
+        var isDrag = false;    //드래그 유무
+        var $select= null;      //옮길타켓
+        var $container = null;  //현재이미지 부모 컨테이너
+        var startImgX = 0;  //드래그 시작위치
+        var startImgY = 0;
+
+
+        $(document).ready(function(){
+            init(); //객체 얻기
+            initImagePos(); //이미지 위치시키기
+            initEvent();  //마우스 이벤트 처리
+        });
+        function initImagePos(){
+            $imgs.each(function(){
+                var left = Math.floor(Math.random()*700);
+                var top = Math.floor(Math.random()*340);
+
+                $(this).css({
+                    left: left,
+                    top: top
+                });
+            });
+        }
+        function init(){
+            $imgs = $(".container img");
+            $select = $(".select");
+            $container = $(".container");
+        }
+        function initEvent(){
+            //이미지 선택시
+            $imgs.on("mousedown",function(e){
+                $dragTarget = $(this);
+                isDrag = true;
+                //시작 위치값저장하기
+                var offset = $dragTarget.offset();
+                    startImgX = e.pageX-offset.left;
+                    startImgY = e.pageY-offset.top;
+                
+            });
+            //이미지 움직일때 
+            $(document).on("mousemove",function(e){
+                if(isDrag){
+                    //기본 기능 취소
+                    e.preventDefault();
+
+                    //절대위치 얻어내기
+                    var endX = e.pageX-startImgX;
+                    var endY = e.pageY-startImgY;
+
+                    $dragTarget.offset({
+                        left:endX,
+                        top: endY
+                    })
+                }
+            });
+
+            //이미지 내려놨을때
+            $imgs.on("mouseup",function(e){
+                $dragTarget=null;
+                isDrag = false;
+            });
+        }
+    </script>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .wrap{
+            margin: 50px;
+        }
+        .select{
+            width: 800px;
+            height: 100px;
+            border: 1px solid black;
+        }
+        .sleect img{
+            width: 150px;
+            float: left;
+        }
+        .container{
+            position: absolute;
+            width: 800px;
+            height: 400px;
+            border: 1px solid black;
+        }
+        .container img{
+            position: absolute;
+            width: 100px;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrap">
+        <div class="select"></div>
+        <div class="container">
+            <img src="images/1.png">
+            <img src="images/2.png">
+            <img src="images/3.png">
+            <img src="images/4.png">
+            <img src="images/5.png">
+        </div>
+    </div>
+</body>
+</html>
