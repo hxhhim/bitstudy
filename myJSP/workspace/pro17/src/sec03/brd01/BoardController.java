@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 
-@WebServlet("/board/*")
+//@WebServlet("/board/*")
 public class BoardController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 		BoardService boardService;
@@ -36,7 +36,7 @@ public class BoardController extends HttpServlet {
 		String action = request.getPathInfo();
 		System.out.println("action: "+ action);
 		try {
-			List<ArticleVO> ariclesList = new ArrayList<ArticleVO>();
+			List<ArticleVO> articlesList = new ArrayList<ArticleVO>();
 			if(action == null) {
 				articlesList = boardService.listArticles();
 				request.setAttribute("articlesList", articlesList);
