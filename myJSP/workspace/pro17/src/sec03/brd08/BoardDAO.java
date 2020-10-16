@@ -32,6 +32,8 @@ public class BoardDAO {
 		List articlesList = new ArrayList();
 		int section = (Integer)pagingMap.get("section");
 		int pageNum = (Integer)pagingMap.get("pageNum");
+		System.out.println("DAO "+section);
+		System.out.println("DAO "+pageNum);
 		try {
 			conn = dataFactory.getConnection();
 			String query = "SELECT * FROM("
@@ -85,7 +87,7 @@ public class BoardDAO {
 	}
 	public List selectAllArticles() {
 		List articlesList = new ArrayList();
-		try {
+			try {
 			conn = dataFactory.getConnection();
 			String query = "SELECT LEVEL, articleNO,parentNO,title,content,id,writeDate"+" from t_board"
 								+" START WITH parentNO=0" + " CONNECT BY PRIOR articleNO = parentNO"
