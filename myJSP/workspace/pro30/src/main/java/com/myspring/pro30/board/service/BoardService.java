@@ -7,5 +7,5 @@ import com.myspring.pro30.board.vo.ArticleVO;
 
 public interface BoardService {
 	public List<ArticleVO> listArticles() throws Exception;
-	
+	public int addNewArticle(Map articleMap)throws Exception;
 }

@@ -21,6 +21,18 @@ public class BoardDAOImpl implements BoardDAO {
 		return articlesList;
 	}
 
+	@Override
+	public int insertNewArticle(Map articleMap) throws DataAccessException {
+		int articleNO = selectNewArticleNO();
+		articleMap.put("articleNO", articleMap);
+		sqlSession.insert("mapper.board.insertNewArticle",articleMap);
+		return 0;
+	}
+	
+	private int selectNewArticleNO()throws DataAccessException{
+		return sqlSession.selectOne("mapper.board.selectNewArticleNO");
+	}
+
 	
 
 	

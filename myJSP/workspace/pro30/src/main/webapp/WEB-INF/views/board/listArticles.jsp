@@ -22,9 +22,10 @@
 	<meta charset="UTF-8">
 	<title>글목록창</title>
 </head>
+<script src="http://code.jquery.com/jquery-latest.js"></script>
 <script>
 	function fn_articleForm(isLogOn, articleForm, loginForm){
-		if(isLogon != '' && isLogOn !='false'){
+		if(isLogOn != '' && isLogOn !='false'){
 			location.href=articleForm;
 		}else{
 			alert("로그인 후 글쓰기가 가능합니다.");
@@ -75,7 +76,7 @@
 							</c:choose>
 						</td>
 						<td width="10%">
-							<fmt:formatDate value="${article.writeDate}" />
+							"${article.writeDate}"
 						</td>
 					</tr>
 				</c:forEach>
@@ -85,7 +86,7 @@
 
 	
 	<br><br>
-	<a class="cls1" href="javascript:fn_articleForm('${isLogOn}','${contextPath}/board/articleForm.do'
+	<a class="cls1" href="javascript:fn_articleForm('${isLogOn}','${contextPath}/board/articleForm.do',
 													'${contextPath}/member/loginForm.do')"><p class="cls2">글쓰기</p>
 	</a>
 

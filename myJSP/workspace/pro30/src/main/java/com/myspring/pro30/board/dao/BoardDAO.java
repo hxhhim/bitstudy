@@ -9,6 +9,6 @@ import com.myspring.pro30.board.vo.ArticleVO;
 
 public interface BoardDAO {
 	public List selectAllArticlesList() throws DataAccessException;
-
+	public int insertNewArticle(Map articleMap)throws DataAccessException;
 	
 }
