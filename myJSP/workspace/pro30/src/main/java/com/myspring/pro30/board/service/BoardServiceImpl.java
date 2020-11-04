@@ -26,11 +26,41 @@ public class BoardServiceImpl implements BoardService {
 		return articlesList;
 	}
 
+//	1개 이미지 추가
+//	@Override
+//	public int addNewArticle(Map articleMap) throws Exception {
+//		
+//		return boardDAO.insertNewArticle(articleMap);
+//	}
+	
+	@Override
+	public int addNewArticle(Map articleMap) throws Exception{
+		int articleNO = boardDAO.insertNewArticle(articleMap);
+		articleMap.put("articleNO", articleMap)
+		boardDAO.insertNewImage(articleMap);
+		return articleNO;
+	}
+	
+
 
 	@Override
-	public int addNewArticle(Map articleMap) throws Exception {
+	public ArticleVO viewArticle(int articleNO) throws Exception {
+		ArticleVO articleVO =boardDAO.selectArticle(articleNO);
+		return articleVO;
+	}
+
+
+	@Override
+	public void modArticle(Map articleMap) throws Exception {
+		boardDAO.updateArticle(articleMap);
 		
-		return boardDAO.insertNewArticle(articleMap);
+	}
+
+
+	@Override
+	public void removeArticle(int articleNO) throws Exception {
+		boardDAO.deleteArticle(articleNO);
+		
 	}
 
 	
