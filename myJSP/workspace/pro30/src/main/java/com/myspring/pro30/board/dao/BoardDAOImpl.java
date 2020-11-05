@@ -1,5 +1,6 @@
 package com.myspring.pro30.board.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -9,6 +10,7 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Repository;
 
 import com.myspring.pro30.board.vo.ArticleVO;
+import com.myspring.pro30.board.vo.ImageVO;
 
 @Repository("boardDAO")
 public class BoardDAOImpl implements BoardDAO {
@@ -29,7 +31,7 @@ public class BoardDAOImpl implements BoardDAO {
 		articleMap.put("articleNO", articleNO);
 		
 		sqlSession.insert("mapper.board.insertNewArticle",articleMap);
-		return 0;
+		return articleNO;
 	}
 	
 	private int selectNewArticleNO()throws DataAccessException{
@@ -69,6 +71,16 @@ public class BoardDAOImpl implements BoardDAO {
 		return sqlSession.selectOne("mapper.board.selectNewImageFileNO");
 	}
 
+	@Override
+	public List selectImageFileList(int articleNO) throws DataAccessException {
+		List<ImageVO> imageFileList = null;
+		imageFileList = sqlSession.selectList("mapper.board.selectImageFileList",articleNO);
+		return imageFileList;
+	}
+
+	
+	
+	
 	
 
 	

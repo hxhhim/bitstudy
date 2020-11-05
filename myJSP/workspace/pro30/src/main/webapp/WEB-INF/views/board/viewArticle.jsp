@@ -6,6 +6,8 @@
 	request.setCharacterEncoding("utf-8");
 %>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
+<c:set var="article" value="${articleMap.article}" />
+<c:set var="imageFileList" value="${articleMap.imageFileList}" />
 <!DOCTYPE html>
 <html>
 
@@ -114,6 +116,24 @@
 						id="i_imageFileName" disabled onchange="readURL(this);" /></td>
 				</tr>
 			</c:if> --%>
+			<c:if test="${not empty imageFileList && imageFileList !='null' }">
+				<c:forEach var="item" items="${imageFileList}" varStatus="status">
+					<tr>
+						<td width="150" align="center" bgcolor="#FF9933" rowspan="2">
+								이미지${status.count}
+						</td>
+						<td>
+							<input type="hidden" name="originalFileName" value="${item.imageFileName}" />
+							<img src="${contextPath}/download.do?articleNO=${article.articleNO}&imageFileName=${item.imageFileName}" id="preview" /><br>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<input type="file" name="imageFileName" id="i_imageFileName" disabled onchange="readURL(this);" />
+						</td>
+					</tr>
+					</c:forEach>
+			</c:if>
 			
 			<c:choose>
 				<c:when test="${not empty article.imageFileName && article.imageFileName !='null'}">

@@ -28,12 +28,11 @@
             obj.action = "${contextPath}/board/listArticles.do";
             obj.submit();
         }
+        var cnt=1;
         function fn_addFile(){
         	$("#d_file").append("<br>"+"<input type='file' name='file"+cnt+"'/>");
         	cnt++;
         }
-        
-        
     </script>
     
     <title>새글 쓰기 창</title>

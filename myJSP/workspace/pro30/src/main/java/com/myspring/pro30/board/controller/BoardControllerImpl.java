@@ -28,6 +28,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.myspring.pro30.board.service.BoardService;
 import com.myspring.pro30.board.vo.ArticleVO;
+import com.myspring.pro30.board.vo.ImageVO;
 import com.myspring.pro30.member.vo.MemberVO;
 
 @Controller("boardController")
@@ -117,6 +118,7 @@ public class BoardControllerImpl implements BoardController {
 		while(enu.hasMoreElements()) {
 			String name = (String)enu.nextElement();
 			String value = multipartRequest.getParameter(name);
+			articleMap.put(name, value);
 		}
 		
 		HttpSession session = multipartRequest.getSession();
@@ -227,17 +229,27 @@ public class BoardControllerImpl implements BoardController {
 		return fileList;
 	}
 	
-	@RequestMapping(value="/board/viewArticle.do", method=RequestMethod.GET)
-	public ModelAndView viewArticle(@RequestParam("articleNO")int articleNO,
-									HttpServletRequest request,
-									HttpServletResponse response) throws Exception{
+	/* 한개의 이미지 보여주기
+	 * @RequestMapping(value="/board/viewArticle.do", method=RequestMethod.GET)
+	 * public ModelAndView viewArticle(@RequestParam("articleNO")int articleNO,
+	 * HttpServletRequest request, HttpServletResponse response) throws Exception{
+	 * String viewName = (String)request.getAttribute("viewName"); articleVO =
+	 * boardService.viewArticle(articleNO); ModelAndView mav = new ModelAndView();
+	 * mav.setViewName(viewName); mav.addObject("article", articleVO); return mav; }
+	 */
+	
+	@RequestMapping(value="/board/viewArticle.do" , method  = RequestMethod.GET)
+	public ModelAndView viewArticle(@RequestParam("articleNO") int articleNO,
+									HttpServletRequest request, HttpServletResponse response )throws Exception{
 		String viewName = (String)request.getAttribute("viewName");
-		articleVO = boardService.viewArticle(articleNO);
+		Map articleMap = boardService.viewArticle(articleNO); 
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName(viewName);
-		mav.addObject("article", articleVO);
+		mav.addObject("articleMap", articleMap);
 		return mav;
+		
 	}
+	
 	
 	//한개 이미지 수정기능
 	@RequestMapping(value="/board/modArticle.do", method = RequestMethod.POST)

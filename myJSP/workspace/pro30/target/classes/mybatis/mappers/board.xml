@@ -13,7 +13,13 @@
 		<result property="writeDate" column="writeDate" />
 		<result property="imageFileName" column="imageFileName" />
 	</resultMap>
-
+	
+	<resultMap type="imageVO" id="imgResult">
+		<result property="imageFileNO" column="imageFileNO" />
+		<result property="articleNO" column="articleNO" />
+		<result property="imageFileName" column="imageFileName" />
+	</resultMap>
+	
 	<select id="selectAllArticlesList" resultMap="articlesResult">
 		<![CDATA[
 			SELECT level, articleNO, parentNO, title, content, writeDate, imageFileName, id
@@ -32,7 +38,7 @@
 	<insert id="insertNewArticle" parameterType="java.util.Map">
 		<![CDATA[
 			insert into t_board(articleNO, id, title, content, imageFileName)
-			values(#{articleNO}, #{id}, #{title}, #{content}, null}
+			values(#{articleNO}, #{id}, #{title}, #{content}, null)
 		]]>
 	</insert>
 	
@@ -76,4 +82,17 @@
 				CONNECT BY PRIOR articleNO = parentNO)
  		]]>
 	</delete>
+	<select id="selectNewImageFileNO" resultType="int">
+		<![CDATA[
+			SELECT nvl(max(imageFileNO),0) from t_imageFile
+		]]>
+	</select>
+	
+	<select id="selectImageFileList" resultMap = "imgResult" parameterType="int" >
+		<![CDATA[
+			SELECT * from t_imageFile
+			where articleNO=#{articleNO}
+		]]>
+	</select>
+	
 </mapper>
