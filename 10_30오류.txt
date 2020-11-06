@@ -1,0 +1,15 @@
+10/30
+오류 
+메일보내기
+소켓컨버트 오류
+javax.net.ssl.SSLSocketFactory
+
+c를 빼먹고 침
+javax.net.ssl.SSLSoketFactory
+
+인터셉터 500오류
+
+getviewName 메서드에서
+
+viewName if문을 두번써서 가져오는 이름을 잘못가져와서 
+

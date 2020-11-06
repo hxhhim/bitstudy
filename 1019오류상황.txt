@@ -1,0 +1,6 @@
+2020년 10월 19일
+com.spring.ex02 오류
+loginForm.jsp에서 아이디 비밀번호 입력후
+login.do로 연결이 안됨
+result
+--메서드 이름이 login이 아니고 loing 오타

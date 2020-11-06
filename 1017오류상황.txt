@@ -1,0 +1,24 @@
+db에 테이블과 데이터는 존재함
+
+글쓰기 기능 작동
+
+db에 13개 데이터 확인
+
+페이지 표시란은 정상작동(임의로 넣어도 작동/db에 등록된 데이터13개 불러와서 2페이지로 보여줌)
+
+
+추측:section 값과 pageNum이 
+ 잘못입력되서 발생 
+ 전달이 안되었을수 있음
+1,1 1,2 이외의 값은 디벨롭퍼에서도 조회안됨
+
+dao / controller 
+section/pageNum 값이 1로 넘어옴
+
+결론
+
+listarticles.jsp 에서
+articlesList 변수에 ${articlesMap.articlesList}를 담을때
+변수 이름에서 s를 빼먹고 articleList로 선언하고
+사용할때는 articlesList라고 사용해서
+작성글이 브라우저에 표출안되었던것

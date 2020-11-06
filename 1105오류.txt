@@ -1,0 +1,21 @@
+11/5 오류
+
+http://localhost:8090/pro30/main.do
+
+접속 안됨 404 
+
+톰캣 재시작 해도 404
+
+add and remove로 pro30을 지웠다가 다시 추가 한후 
+
+문제없이 동작
+
+for SQL []; SQL state [99999]; 
+error code [17004];
+ 부적합한 열 유형: 1111; 
+nested exception is java.sql.SQLException: 
+부적합한 열 유형: 1111
+
+boardControllerImple에서 글제목 내용 put code 빼먹어서
+인서트 sql문에 null값이 들어가서 오류
+articleMap.put(name, value);

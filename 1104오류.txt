@@ -1,0 +1,22 @@
+30.5 새글추가하기 에서 sql 오류
+SQL state [99999]; error code [17004]; 부적합한 열 유형; 
+nested exception is java.sql.SQLException: 부적합한 열 유형
+
+-오류의 원인
+데이터 타입이 다르다
+
+map을 파라미터로 넘겼을때 해당 맵안에 파라미터가 null일경우
+
+화면에서 (jsp view) request parameter 값이 없을때
+
+form id 또는 name 값이 없을때
+
+ajax 모듈 사용시 value 값이 null이 있을경우
+
+새글 작성을 위한 인자값은 
+
+articleNO,  title, content, imageFileName, id
+
+BoardDAOImpl  insertNewArticle 에서 articleNO를 map에 넣어주는데
+
+이때 articleNO가 아니라 articleMap을 넣어서 오류발생
