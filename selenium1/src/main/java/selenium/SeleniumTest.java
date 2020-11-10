@@ -1,7 +1,13 @@
 package selenium;
 
+import java.time.Duration;
+
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class SeleniumTest {
 
@@ -22,8 +28,8 @@ public class SeleniumTest {
 		System.setProperty(WEB_DRIVER_ID, WEB_DRIVER_PATH);
 		
 		driver = new ChromeDriver();
-		//플러스행사 페이지주소
-		base_url = "http://cu.bgfretail.com/event/plus.do?category=event&depth2=1&sf=N";
+		//상품안내 페이지주소
+		base_url = "http://cu.bgfretail.com/product/index.do?category=product&depth1=1&sf=N";
 		
 		
 	}
@@ -31,14 +37,46 @@ public class SeleniumTest {
 	public void crawl() {
 		try {
 			driver.get(base_url);
+
+			//음료 카테고리 버튼 selector
+			WebElement drinkbtn = driver.findElement(By.cssSelector("#contents > div.cateWrap > ul > li.cate06 > span > a > img"));
+			drinkbtn.click();
 			
-			String text = driver.getPageSource();
+						
+			//할인 증정상품 메뉴 click
+		
 			
-			System.out.println(driver.getPageSource());
+			WebDriverWait wait = new WebDriverWait(driver,30);
+			wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("#dataTable > div.prodListWrap > ul > li:nth-child(1) > div > a > img")));
+			WebElement plusbtn = driver.findElement(By.cssSelector("#setB > span > a"));
+			plusbtn.click();
+			
+			//더보기 버튼으로 추가로 메뉴 불러오기
+					
+//			WebDriverWait wait4 = new WebDriverWait(driver,30);
+//			wait4.until(ExpectedConditions.elementToBeClickable(By.cssSelector("#dataTable > div.prodListWrap > ul > li:nth-child(1) > div > a > img")));
+			
+			try {
+				while(true) {
+					Thread.sleep(3000);
+					WebElement addbtn = driver.findElement(By.cssSelector("#dataTable > div.prodListBtn > div.prodListBtn-w > a"));						
+					addbtn.click();
+					}
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+			System.out.println("false2");
+						
+			
+////			WebElement plus = 
+////			
+////			String text = driver.getPageSource();
+//			
+//			System.out.println(text);
 		}catch (Exception e) {
 			e.printStackTrace();
 		}finally {
-			driver.close();
+//			driver.close();
 		}
 	}
 }
